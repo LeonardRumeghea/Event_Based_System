@@ -1,0 +1,1 @@
+[{"company": ["!=", "google"], "value": [">=", 30], "variation": ["<", 0.8]}, {"company": ["!=", "google"], "value": [">=", 30], "variation": ["<", 0.8]}]
