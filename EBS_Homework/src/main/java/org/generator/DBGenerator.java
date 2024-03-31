@@ -32,10 +32,10 @@ public class DBGenerator {
         return -1;
     }
 
-    private void populateSubsRandom(@NotNull ArrayList<Integer> counts, Subscription subscription, ArrayList<String> companiesSigns) {
+    private boolean populateSubsRandom(@NotNull ArrayList<Integer> counts, Subscription subscription, ArrayList<String> companiesSigns) {
 
         int atr = getValidAttribute(counts, subscription);
-        if (atr == -1) { return; }
+        if (atr == -1) { return false; }
 
         switch (atr) {
             case 1:
@@ -50,6 +50,8 @@ public class DBGenerator {
         }
 
         counts.set(atr, counts.get(atr) - 1);
+
+        return true;
     }
 
     public ArrayList<Subscription> generateSubscriptions(int totalFields, int nrCompany, int nrValue, int nrDrop, int nrVariation, int nrDate){
@@ -69,12 +71,14 @@ public class DBGenerator {
         Collections.shuffle(companiesSigns);
 
         int idx = 0;
+        boolean result;
         while(counts.getFirst() != 0) {
 
-            populateSubsRandom(counts, listOfSubscriptions.get(idx), companiesSigns);
+            result = populateSubsRandom(counts, listOfSubscriptions.get(idx), companiesSigns);
 
             idx = (idx + 1) % NUMBER_OF_SUBSCRIPTIONS;
-            counts.set(0, counts.getFirst() - 1);
+
+            if (result) counts.set(0, counts.getFirst() - 1);
         }
 
         Collections.shuffle(listOfSubscriptions);

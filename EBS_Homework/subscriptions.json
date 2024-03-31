@@ -1,52 +1,84 @@
 [
   {
     "drop": {
-      "sign": "<",
-      "value": 14.931203
-    },
-    "company": {
-      "sign": "!=",
-      "value": "Google"
-    }
-  },
-  {
-    "value": {
-      "sign": "<=",
-      "value": 608.0388
-    },
-    "variation": {
       "sign": ">=",
-      "value": -14.242766
-    }
-  },
-  {
-    "drop": {
-      "sign": "<",
-      "value": 2.7189362
+      "value": 13.314851
     },
     "company": {
       "sign": "=",
-      "value": "Tesla"
+      "value": "Apple"
+    }
+  },
+  {
+    "date": {
+      "sign": "!=",
+      "value": "2023-12-25"
+    },
+    "value": {
+      "sign": ">=",
+      "value": 671.9711
+    },
+    "variation": {
+      "sign": "<=",
+      "value": 8.481837
+    }
+  },
+  {
+    "drop": {
+      "sign": "<",
+      "value": 1.7125893
+    },
+    "company": {
+      "sign": "=",
+      "value": "Google"
+    },
+    "value": {
+      "sign": ">=",
+      "value": 324.68832
+    }
+  },
+  {
+    "company": {
+      "sign": "=",
+      "value": "Microsoft"
+    },
+    "value": {
+      "sign": "<=",
+      "value": 137.20871
+    },
+    "variation": {
+      "sign": ">=",
+      "value": 15.742542
+    }
+  },
+  {
+    "drop": {
+      "sign": "<",
+      "value": 10.460301
+    },
+    "company": {
+      "sign": "=",
+      "value": "Netflix"
+    },
+    "variation": {
+      "sign": "<=",
+      "value": 26.254011
+    }
+  },
+  {
+    "company": {
+      "sign": "!=",
+      "value": "Microsoft"
+    },
+    "value": {
+      "sign": "<",
+      "value": 958.6174
     }
   },
   {
     "drop": {
       "sign": ">=",
-      "value": 15.445357
-    },
-    "date": {
-      "sign": "!=",
-      "value": "2023-12-23"
-    },
-    "variation": {
-      "sign": "<=",
-      "value": 42.554874
-    }
-  },
-  {
-    "date": {
-      "sign": "!=",
-      "value": "2024-01-03"
+      "value": 21.988531
     },
     "company": {
       "sign": "=",
@@ -54,187 +86,87 @@
     },
     "value": {
       "sign": ">",
-      "value": 954.44183
-    }
-  },
-  {
-    "date": {
-      "sign": "=",
-      "value": "2024-01-30"
-    },
-    "variation": {
-      "sign": "<",
-      "value": 6.657113
-    }
-  },
-  {
-    "date": {
-      "sign": "=",
-      "value": "2024-03-03"
-    },
-    "variation": {
-      "sign": ">=",
-      "value": 20.110216
+      "value": 195.7611
     }
   },
   {
     "company": {
       "sign": "=",
-      "value": "Facebook"
+      "value": "Tesla"
     },
     "value": {
-      "sign": ">=",
-      "value": 660.78827
-    }
-  },
-  {
-    "drop": {
       "sign": "<",
-      "value": 19.119202
+      "value": 886.8188
     },
     "variation": {
-      "sign": "<",
-      "value": 9.764917
+      "sign": ">",
+      "value": 27.1447
     }
   },
   {
     "drop": {
-      "sign": "<",
-      "value": 19.33364
+      "sign": ">",
+      "value": 16.64127
     },
     "company": {
       "sign": "=",
-      "value": "Google"
-    }
-  },
-  {
-    "company": {
-      "sign": "!=",
       "value": "Amazon"
     },
     "value": {
       "sign": ">=",
-      "value": 896.8196
-    },
-    "variation": {
-      "sign": ">=",
-      "value": -1.7148824
-    }
-  },
-  {
-    "drop": {
-      "sign": "<=",
-      "value": 1.6894772
-    },
-    "value": {
-      "sign": "<",
-      "value": 140.47734
-    }
-  },
-  {
-    "drop": {
-      "sign": ">=",
-      "value": 12.853814
-    },
-    "date": {
-      "sign": "=",
-      "value": "2024-01-31"
-    },
-    "variation": {
-      "sign": ">=",
-      "value": 30.156092
+      "value": 92.29676
     }
   },
   {
     "date": {
       "sign": "=",
-      "value": "2024-01-28"
+      "value": "2024-03-27"
+    },
+    "company": {
+      "sign": "!=",
+      "value": "Tesla"
+    },
+    "variation": {
+      "sign": ">",
+      "value": -38.714573
+    }
+  },
+  {
+    "date": {
+      "sign": "=",
+      "value": "2024-03-30"
     },
     "company": {
       "sign": "=",
       "value": "IBM"
     },
     "value": {
-      "sign": "<",
-      "value": 356.04202
-    }
-  },
-  {
-    "company": {
-      "sign": "!=",
-      "value": "Netflix"
-    },
-    "variation": {
-      "sign": "<=",
-      "value": 46.566864
-    }
-  },
-  {
-    "company": {
-      "sign": "=",
-      "value": "Tesla"
-    },
-    "value": {
-      "sign": "<=",
-      "value": 31.722988
+      "sign": ">=",
+      "value": 549.43945
     }
   },
   {
     "drop": {
-      "sign": "<",
-      "value": 15.631355
+      "sign": ">=",
+      "value": 5.174164
     },
-    "company": {
-      "sign": "=",
-      "value": "Facebook"
-    },
-    "variation": {
-      "sign": ">",
-      "value": 17.619009
-    }
-  },
-  {
     "date": {
-      "sign": "=",
-      "value": "2024-02-02"
-    },
-    "value": {
-      "sign": ">",
-      "value": 545.95605
-    }
-  },
-  {
-    "value": {
-      "sign": "<=",
-      "value": 206.08875
-    },
-    "variation": {
-      "sign": ">=",
-      "value": -48.56908
-    }
-  },
-  {
-    "drop": {
-      "sign": "<=",
-      "value": 14.15837
-    },
-    "variation": {
-      "sign": ">=",
-      "value": 34.984905
+      "sign": "!=",
+      "value": "2024-02-16"
     }
   },
   {
     "company": {
       "sign": "=",
-      "value": "Amazon"
+      "value": "IBM"
     },
     "value": {
-      "sign": ">",
-      "value": 221.63976
+      "sign": "<=",
+      "value": 226.96072
     },
     "variation": {
       "sign": ">=",
-      "value": -9.039191
+      "value": -22.645056
     }
   },
   {
@@ -243,42 +175,244 @@
       "value": "Oracle"
     },
     "value": {
-      "sign": "<",
-      "value": 725.3196
+      "sign": ">",
+      "value": 157.18442
+    }
+  },
+  {
+    "company": {
+      "sign": "=",
+      "value": "Netflix"
+    },
+    "variation": {
+      "sign": "<=",
+      "value": 24.182531
     }
   },
   {
     "date": {
       "sign": "=",
-      "value": "2024-01-17"
+      "value": "2024-03-18"
+    },
+    "company": {
+      "sign": "!=",
+      "value": "Tesla"
+    },
+    "value": {
+      "sign": ">",
+      "value": 74.32924
+    }
+  },
+  {
+    "company": {
+      "sign": "!=",
+      "value": "Tesla"
+    },
+    "value": {
+      "sign": "<",
+      "value": 689.815
+    },
+    "variation": {
+      "sign": ">=",
+      "value": 27.213348
+    }
+  },
+  {
+    "drop": {
+      "sign": "<",
+      "value": 16.83755
+    },
+    "company": {
+      "sign": "=",
+      "value": "Apple"
     },
     "value": {
       "sign": "<=",
-      "value": 57.386726
+      "value": 793.64276
+    }
+  },
+  {
+    "company": {
+      "sign": "!=",
+      "value": "IBM"
+    },
+    "value": {
+      "sign": ">=",
+      "value": 161.85854
+    },
+    "variation": {
+      "sign": ">",
+      "value": 20.141172
+    }
+  },
+  {
+    "drop": {
+      "sign": ">=",
+      "value": 12.531409
+    },
+    "value": {
+      "sign": "<=",
+      "value": 16.500471
+    },
+    "variation": {
+      "sign": "<=",
+      "value": -30.286316
     }
   },
   {
     "date": {
       "sign": "!=",
-      "value": "2024-02-04"
+      "value": "2024-01-09"
+    },
+    "company": {
+      "sign": "=",
+      "value": "Oracle"
+    },
+    "value": {
+      "sign": ">=",
+      "value": 644.8546
+    }
+  },
+  {
+    "drop": {
+      "sign": "<",
+      "value": 16.519642
+    },
+    "company": {
+      "sign": "=",
+      "value": "Intel"
+    },
+    "value": {
+      "sign": ">",
+      "value": 789.9476
+    }
+  },
+  {
+    "company": {
+      "sign": "=",
+      "value": "Facebook"
+    },
+    "value": {
+      "sign": ">",
+      "value": 552.53265
+    },
+    "variation": {
+      "sign": ">",
+      "value": -35.23567
+    }
+  },
+  {
+    "company": {
+      "sign": "=",
+      "value": "Intel"
+    },
+    "variation": {
+      "sign": "<=",
+      "value": -9.55622
+    }
+  },
+  {
+    "drop": {
+      "sign": ">=",
+      "value": 17.411911
+    },
+    "value": {
+      "sign": "<",
+      "value": 430.09528
+    },
+    "variation": {
+      "sign": "<",
+      "value": -8.460163
+    }
+  },
+  {
+    "drop": {
+      "sign": "<=",
+      "value": 7.2951913
+    },
+    "company": {
+      "sign": "=",
+      "value": "Oracle"
+    },
+    "value": {
+      "sign": ">=",
+      "value": 697.18164
+    }
+  },
+  {
+    "date": {
+      "sign": "=",
+      "value": "2024-03-13"
+    },
+    "value": {
+      "sign": ">",
+      "value": 799.4538
+    },
+    "variation": {
+      "sign": "<=",
+      "value": -5.8730683
+    }
+  },
+  {
+    "drop": {
+      "sign": ">=",
+      "value": 4.0393467
+    },
+    "date": {
+      "sign": "!=",
+      "value": "2024-03-14"
     },
     "company": {
       "sign": "!=",
-      "value": "Netflix"
+      "value": "Oracle"
+    }
+  },
+  {
+    "company": {
+      "sign": "=",
+      "value": "Google"
     },
-    "variation": {
-      "sign": ">=",
-      "value": 13.114706
+    "value": {
+      "sign": "<=",
+      "value": 428.00583
     }
   },
   {
     "drop": {
       "sign": ">",
-      "value": 23.173658
+      "value": 10.9255495
+    },
+    "date": {
+      "sign": "!=",
+      "value": "2024-02-18"
     },
     "variation": {
-      "sign": "<=",
-      "value": -26.777195
+      "sign": ">=",
+      "value": -47.91012
+    }
+  },
+  {
+    "company": {
+      "sign": "=",
+      "value": "Netflix"
+    },
+    "value": {
+      "sign": ">",
+      "value": 291.0723
+    }
+  },
+  {
+    "date": {
+      "sign": "=",
+      "value": "2024-02-14"
+    },
+    "company": {
+      "sign": "=",
+      "value": "IBM"
+    },
+    "value": {
+      "sign": ">=",
+      "value": 812.1434
     }
   },
   {
@@ -286,61 +420,9 @@
       "sign": "!=",
       "value": "Facebook"
     },
-    "value": {
-      "sign": "<=",
-      "value": 387.73105
-    },
     "variation": {
-      "sign": ">",
-      "value": 23.25723
-    }
-  },
-  {
-    "value": {
       "sign": ">=",
-      "value": 411.4373
-    },
-    "variation": {
-      "sign": "<",
-      "value": 23.912706
-    }
-  },
-  {
-    "date": {
-      "sign": "!=",
-      "value": "2024-03-13"
-    },
-    "company": {
-      "sign": "=",
-      "value": "IBM"
-    },
-    "variation": {
-      "sign": "<=",
-      "value": -11.28202
-    }
-  },
-  {
-    "date": {
-      "sign": "=",
-      "value": "2023-12-24"
-    },
-    "company": {
-      "sign": "=",
-      "value": "Intel"
-    },
-    "value": {
-      "sign": ">=",
-      "value": 420.47974
-    }
-  },
-  {
-    "date": {
-      "sign": "!=",
-      "value": "2024-02-27"
-    },
-    "value": {
-      "sign": "<",
-      "value": 462.03128
+      "value": -0.10405154
     }
   },
   {
@@ -348,9 +430,189 @@
       "sign": "=",
       "value": "Apple"
     },
+    "value": {
+      "sign": "<",
+      "value": 527.6271
+    }
+  },
+  {
+    "company": {
+      "sign": "=",
+      "value": "Amazon"
+    },
+    "value": {
+      "sign": "<=",
+      "value": 840.1136
+    }
+  },
+  {
+    "drop": {
+      "sign": "<=",
+      "value": 15.587215
+    },
+    "company": {
+      "sign": "=",
+      "value": "Apple"
+    },
+    "value": {
+      "sign": "<",
+      "value": 383.72974
+    }
+  },
+  {
+    "company": {
+      "sign": "!=",
+      "value": "Apple"
+    },
+    "value": {
+      "sign": ">",
+      "value": 688.4537
+    }
+  },
+  {
+    "drop": {
+      "sign": ">",
+      "value": 5.186091
+    },
+    "company": {
+      "sign": "=",
+      "value": "Facebook"
+    }
+  },
+  {
+    "date": {
+      "sign": "=",
+      "value": "2023-12-28"
+    },
+    "company": {
+      "sign": "=",
+      "value": "Tesla"
+    },
+    "variation": {
+      "sign": ">=",
+      "value": -7.968287
+    }
+  },
+  {
+    "company": {
+      "sign": "!=",
+      "value": "Tesla"
+    },
+    "value": {
+      "sign": ">",
+      "value": 263.55878
+    },
+    "variation": {
+      "sign": "<",
+      "value": -30.149109
+    }
+  },
+  {
+    "date": {
+      "sign": "!=",
+      "value": "2024-02-06"
+    },
+    "value": {
+      "sign": ">=",
+      "value": 639.4674
+    },
     "variation": {
       "sign": ">",
-      "value": -45.16287
+      "value": 49.39004
+    }
+  },
+  {
+    "date": {
+      "sign": "=",
+      "value": "2024-02-24"
+    },
+    "value": {
+      "sign": "<",
+      "value": 553.863
+    },
+    "variation": {
+      "sign": ">",
+      "value": -42.47947
+    }
+  },
+  {
+    "drop": {
+      "sign": ">",
+      "value": 1.1722934
+    },
+    "company": {
+      "sign": "=",
+      "value": "Google"
+    },
+    "value": {
+      "sign": "<",
+      "value": 290.72192
+    }
+  },
+  {
+    "drop": {
+      "sign": ">",
+      "value": 23.347025
+    },
+    "company": {
+      "sign": "=",
+      "value": "Amazon"
+    },
+    "variation": {
+      "sign": ">=",
+      "value": -45.796074
+    }
+  },
+  {
+    "company": {
+      "sign": "=",
+      "value": "Amazon"
+    },
+    "value": {
+      "sign": "<=",
+      "value": 535.85
+    }
+  },
+  {
+    "drop": {
+      "sign": "<=",
+      "value": 12.601662
+    },
+    "company": {
+      "sign": "=",
+      "value": "Oracle"
+    },
+    "variation": {
+      "sign": "<=",
+      "value": -7.9930124
+    }
+  },
+  {
+    "company": {
+      "sign": "=",
+      "value": "Oracle"
+    },
+    "value": {
+      "sign": ">",
+      "value": 0.4781717
+    },
+    "variation": {
+      "sign": "<",
+      "value": 12.373435
+    }
+  },
+  {
+    "drop": {
+      "sign": ">=",
+      "value": 8.164392
+    },
+    "company": {
+      "sign": "!=",
+      "value": "Facebook"
+    },
+    "variation": {
+      "sign": ">",
+      "value": -42.406372
     }
   },
   {
@@ -362,695 +624,343 @@
       "sign": "=",
       "value": "Microsoft"
     },
-    "value": {
-      "sign": "<",
-      "value": 133.40086
-    }
-  },
-  {
-    "company": {
-      "sign": "=",
-      "value": "Google"
-    },
-    "value": {
-      "sign": "<",
-      "value": 741.6475
-    },
-    "variation": {
-      "sign": ">=",
-      "value": 9.165541
-    }
-  },
-  {
-    "drop": {
-      "sign": "<",
-      "value": 13.014287
-    },
-    "company": {
-      "sign": "=",
-      "value": "Amazon"
-    },
-    "value": {
-      "sign": ">=",
-      "value": 214.36754
-    }
-  },
-  {
-    "drop": {
-      "sign": "<=",
-      "value": 20.588573
-    },
-    "date": {
-      "sign": "!=",
-      "value": "2024-02-08"
-    }
-  },
-  {
-    "date": {
-      "sign": "!=",
-      "value": "2024-01-18"
-    },
-    "variation": {
-      "sign": "<",
-      "value": 38.26341
-    }
-  },
-  {
-    "drop": {
-      "sign": ">",
-      "value": 7.3145223
-    },
-    "company": {
-      "sign": "!=",
-      "value": "IBM"
-    }
-  },
-  {
-    "drop": {
-      "sign": "<=",
-      "value": 21.633747
-    },
-    "company": {
-      "sign": "!=",
-      "value": "IBM"
-    }
-  },
-  {
-    "drop": {
-      "sign": "<",
-      "value": 8.629885
-    },
-    "company": {
-      "sign": "!=",
-      "value": "Microsoft"
-    },
-    "value": {
-      "sign": "<",
-      "value": 995.753
-    }
-  },
-  {
-    "drop": {
-      "sign": ">",
-      "value": 17.856428
-    },
-    "value": {
-      "sign": ">=",
-      "value": 774.92554
-    }
-  },
-  {
-    "company": {
-      "sign": "!=",
-      "value": "Amazon"
-    },
-    "value": {
-      "sign": ">",
-      "value": 542.1021
-    },
-    "variation": {
-      "sign": ">",
-      "value": 36.499268
-    }
-  },
-  {
-    "company": {
-      "sign": "!=",
-      "value": "IBM"
-    },
-    "value": {
-      "sign": "<=",
-      "value": 786.0677
-    },
-    "variation": {
-      "sign": ">=",
-      "value": -18.965105
-    }
-  },
-  {
-    "value": {
-      "sign": "<=",
-      "value": 142.48943
-    },
     "variation": {
       "sign": "<=",
-      "value": 31.675861
-    }
-  },
-  {
-    "value": {
-      "sign": "<",
-      "value": 170.83862
-    },
-    "variation": {
-      "sign": ">",
-      "value": -15.366502
-    }
-  },
-  {
-    "drop": {
-      "sign": "<",
-      "value": 20.740055
-    },
-    "company": {
-      "sign": "=",
-      "value": "Microsoft"
-    },
-    "value": {
-      "sign": ">=",
-      "value": 81.49464
-    }
-  },
-  {
-    "value": {
-      "sign": "<=",
-      "value": 412.15802
-    },
-    "variation": {
-      "sign": "<",
-      "value": -26.42019
-    }
-  },
-  {
-    "drop": {
-      "sign": ">",
-      "value": 5.732555
-    },
-    "company": {
-      "sign": "=",
-      "value": "Amazon"
-    }
-  },
-  {
-    "value": {
-      "sign": "<",
-      "value": 453.3349
-    },
-    "variation": {
-      "sign": "<",
-      "value": 41.00064
-    }
-  },
-  {
-    "drop": {
-      "sign": ">=",
-      "value": 21.889109
-    },
-    "variation": {
-      "sign": ">=",
-      "value": -30.514114
+      "value": 10.381366
     }
   },
   {
     "date": {
       "sign": "=",
-      "value": "2024-03-22"
+      "value": "2024-02-07"
     },
     "company": {
       "sign": "=",
       "value": "Netflix"
     },
-    "variation": {
-      "sign": "<=",
-      "value": -34.83035
+    "value": {
+      "sign": ">=",
+      "value": 535.39575
     }
   },
   {
     "drop": {
       "sign": ">",
-      "value": 16.115765
+      "value": 22.349987
     },
+    "company": {
+      "sign": "!=",
+      "value": "Microsoft"
+    },
+    "variation": {
+      "sign": "<",
+      "value": -8.662982
+    }
+  },
+  {
+    "company": {
+      "sign": "!=",
+      "value": "Microsoft"
+    },
+    "value": {
+      "sign": ">",
+      "value": 528.4459
+    },
+    "variation": {
+      "sign": "<=",
+      "value": 48.227497
+    }
+  },
+  {
     "date": {
+      "sign": "!=",
+      "value": "2024-03-12"
+    },
+    "company": {
       "sign": "=",
-      "value": "2024-02-16"
+      "value": "IBM"
+    },
+    "value": {
+      "sign": "<=",
+      "value": 74.552536
+    }
+  },
+  {
+    "company": {
+      "sign": "=",
+      "value": "Netflix"
+    },
+    "value": {
+      "sign": "<=",
+      "value": 988.4441
+    }
+  },
+  {
+    "drop": {
+      "sign": ">",
+      "value": 17.817827
     },
     "company": {
       "sign": "=",
       "value": "Tesla"
-    }
-  },
-  {
-    "company": {
-      "sign": "!=",
-      "value": "Oracle"
-    },
-    "value": {
-      "sign": "<=",
-      "value": 656.0784
-    },
-    "variation": {
-      "sign": "<",
-      "value": 28.128975
-    }
-  },
-  {
-    "drop": {
-      "sign": ">",
-      "value": 20.177197
-    },
-    "variation": {
-      "sign": "<",
-      "value": 19.337658
-    }
-  },
-  {
-    "company": {
-      "sign": "=",
-      "value": "Netflix"
-    },
-    "variation": {
-      "sign": ">",
-      "value": -16.986315
-    }
-  },
-  {
-    "drop": {
-      "sign": "<=",
-      "value": 9.715554
     },
     "value": {
       "sign": "<",
-      "value": 408.1944
+      "value": 102.22619
     }
   },
   {
-    "company": {
-      "sign": "=",
-      "value": "IBM"
-    },
-    "value": {
-      "sign": ">=",
-      "value": 383.5532
-    }
-  },
-  {
-    "value": {
+    "drop": {
       "sign": ">",
-      "value": 240.21492
+      "value": 9.85959
     },
-    "variation": {
-      "sign": "<=",
-      "value": -17.71494
-    }
-  },
-  {
     "date": {
       "sign": "=",
-      "value": "2024-03-17"
-    },
-    "variation": {
-      "sign": ">",
-      "value": -1.5858439
-    }
-  },
-  {
-    "company": {
-      "sign": "=",
-      "value": "Oracle"
-    },
-    "value": {
-      "sign": "<=",
-      "value": 705.4896
-    }
-  },
-  {
-    "drop": {
-      "sign": ">",
-      "value": 11.67004
-    },
-    "company": {
-      "sign": "=",
-      "value": "Netflix"
-    }
-  },
-  {
-    "date": {
-      "sign": "=",
-      "value": "2024-03-24"
-    },
-    "company": {
-      "sign": "=",
-      "value": "Facebook"
-    }
-  },
-  {
-    "date": {
-      "sign": "!=",
-      "value": "2024-03-07"
-    },
-    "company": {
-      "sign": "!=",
-      "value": "Microsoft"
-    },
-    "variation": {
-      "sign": ">",
-      "value": -27.62442
-    }
-  },
-  {
-    "drop": {
-      "sign": ">",
-      "value": 8.202717
-    },
-    "company": {
-      "sign": "=",
-      "value": "Apple"
-    },
-    "value": {
-      "sign": "<=",
-      "value": 733.1325
-    }
-  },
-  {
-    "date": {
-      "sign": "!=",
-      "value": "2024-02-27"
-    },
-    "company": {
-      "sign": "!=",
-      "value": "Facebook"
-    },
-    "value": {
-      "sign": "<",
-      "value": 789.00146
-    }
-  },
-  {
-    "company": {
-      "sign": "=",
-      "value": "Oracle"
-    },
-    "value": {
-      "sign": "<=",
-      "value": 561.57056
-    }
-  },
-  {
-    "value": {
-      "sign": "<=",
-      "value": 880.6071
-    },
-    "variation": {
-      "sign": "<=",
-      "value": -8.975916
-    }
-  },
-  {
-    "drop": {
-      "sign": ">",
-      "value": 8.214354
-    },
-    "variation": {
-      "sign": "<",
-      "value": 26.263357
-    }
-  },
-  {
-    "drop": {
-      "sign": "<",
-      "value": 17.58177
-    },
-    "date": {
-      "sign": "!=",
-      "value": "2024-01-16"
-    }
-  },
-  {
-    "drop": {
-      "sign": ">=",
-      "value": 8.432689
-    },
-    "company": {
-      "sign": "!=",
-      "value": "Apple"
-    }
-  },
-  {
-    "company": {
-      "sign": "!=",
-      "value": "Google"
-    },
-    "value": {
-      "sign": "<",
-      "value": 745.68964
-    },
-    "variation": {
-      "sign": "<=",
-      "value": -16.255371
-    }
-  },
-  {
-    "drop": {
-      "sign": "<",
-      "value": 5.584307
-    },
-    "value": {
-      "sign": ">",
-      "value": 856.2048
-    }
-  },
-  {
-    "value": {
-      "sign": "<",
-      "value": 64.01489
-    },
-    "variation": {
-      "sign": ">=",
-      "value": 35.35986
-    }
-  },
-  {
-    "date": {
-      "sign": "!=",
-      "value": "2024-02-29"
-    },
-    "company": {
-      "sign": "=",
-      "value": "Oracle"
-    },
-    "value": {
-      "sign": "<=",
-      "value": 893.9337
-    }
-  },
-  {
-    "value": {
-      "sign": "<",
-      "value": 793.2741
-    },
-    "variation": {
-      "sign": ">",
-      "value": 0.83666563
-    }
-  },
-  {
-    "drop": {
-      "sign": ">=",
-      "value": 3.0795317
-    },
-    "value": {
-      "sign": ">",
-      "value": 976.63995
-    }
-  },
-  {
-    "drop": {
-      "sign": ">",
-      "value": 4.620939
-    },
-    "date": {
-      "sign": "!=",
-      "value": "2024-01-14"
-    },
-    "company": {
-      "sign": "!=",
-      "value": "Facebook"
-    }
-  },
-  {
-    "drop": {
-      "sign": ">=",
-      "value": 20.534807
-    },
-    "value": {
-      "sign": ">",
-      "value": 225.74861
-    }
-  },
-  {
-    "company": {
-      "sign": "=",
-      "value": "Intel"
-    },
-    "value": {
-      "sign": "<=",
-      "value": 96.08474
-    },
-    "variation": {
-      "sign": ">=",
-      "value": 20.774708
-    }
-  },
-  {
-    "company": {
-      "sign": "=",
-      "value": "Intel"
-    },
-    "variation": {
-      "sign": "<",
-      "value": 33.44107
-    }
-  },
-  {
-    "date": {
-      "sign": "!=",
-      "value": "2024-01-04"
-    },
-    "variation": {
-      "sign": ">=",
-      "value": 32.17101
-    }
-  },
-  {
-    "date": {
-      "sign": "=",
-      "value": "2024-02-29"
-    },
-    "company": {
-      "sign": "!=",
-      "value": "Microsoft"
-    },
-    "value": {
-      "sign": "<=",
-      "value": 997.60767
-    }
-  },
-  {
-    "value": {
-      "sign": ">=",
-      "value": 17.788168
-    },
-    "variation": {
-      "sign": ">=",
-      "value": -10.84399
-    }
-  },
-  {
-    "drop": {
-      "sign": "<=",
-      "value": 17.069458
-    },
-    "value": {
-      "sign": ">",
-      "value": 736.0112
-    }
-  },
-  {
-    "date": {
-      "sign": "!=",
-      "value": "2024-03-10"
-    },
-    "company": {
-      "sign": "=",
-      "value": "Apple"
-    }
-  },
-  {
-    "drop": {
-      "sign": ">",
-      "value": 13.208153
-    },
-    "company": {
-      "sign": "=",
-      "value": "Apple"
-    }
-  },
-  {
-    "drop": {
-      "sign": "<=",
-      "value": 12.691337
-    },
-    "variation": {
-      "sign": "<=",
-      "value": -26.21649
-    }
-  },
-  {
-    "drop": {
-      "sign": ">",
-      "value": 15.545428
-    },
-    "value": {
-      "sign": ">=",
-      "value": 843.08813
-    }
-  },
-  {
-    "date": {
-      "sign": "!=",
       "value": "2024-03-15"
     },
     "company": {
       "sign": "=",
       "value": "IBM"
-    },
-    "value": {
-      "sign": ">=",
-      "value": 955.3525
     }
   },
   {
+    "drop": {
+      "sign": ">=",
+      "value": 12.972836
+    },
+    "company": {
+      "sign": "!=",
+      "value": "Facebook"
+    },
+    "variation": {
+      "sign": ">",
+      "value": 2.6270576
+    }
+  },
+  {
+    "date": {
+      "sign": "!=",
+      "value": "2024-01-07"
+    },
     "company": {
       "sign": "=",
-      "value": "Tesla"
+      "value": "Google"
     },
     "value": {
       "sign": ">=",
-      "value": 5.3936014
+      "value": 616.25
     }
   },
   {
+    "date": {
+      "sign": "!=",
+      "value": "2023-12-29"
+    },
+    "company": {
+      "sign": "=",
+      "value": "Microsoft"
+    },
+    "value": {
+      "sign": ">=",
+      "value": 438.39484
+    }
+  },
+  {
+    "drop": {
+      "sign": "<=",
+      "value": 9.607166
+    },
     "company": {
       "sign": "=",
       "value": "Netflix"
     },
     "variation": {
       "sign": ">=",
-      "value": 2.8764503
+      "value": -45.698887
     }
   },
   {
-    "value": {
+    "drop": {
       "sign": "<",
-      "value": 919.1918
+      "value": 1.1822764
     },
-    "variation": {
-      "sign": ">=",
-      "value": 31.902971
-    }
-  },
-  {
+    "date": {
+      "sign": "=",
+      "value": "2023-12-31"
+    },
     "company": {
-      "sign": "!=",
-      "value": "Microsoft"
-    },
-    "variation": {
-      "sign": ">=",
-      "value": -45.10974
+      "sign": "=",
+      "value": "Oracle"
     }
   },
   {
     "date": {
       "sign": "!=",
-      "value": "2023-12-30"
+      "value": "2023-12-31"
     },
+    "company": {
+      "sign": "=",
+      "value": "IBM"
+    },
+    "value": {
+      "sign": "<=",
+      "value": 571.59076
+    }
+  },
+  {
+    "date": {
+      "sign": "!=",
+      "value": "2024-02-13"
+    },
+    "company": {
+      "sign": "=",
+      "value": "Tesla"
+    }
+  },
+  {
+    "date": {
+      "sign": "!=",
+      "value": "2024-02-10"
+    },
+    "company": {
+      "sign": "!=",
+      "value": "IBM"
+    },
+    "variation": {
+      "sign": "<=",
+      "value": -39.411053
+    }
+  },
+  {
+    "date": {
+      "sign": "!=",
+      "value": "2023-12-31"
+    },
+    "company": {
+      "sign": "!=",
+      "value": "Intel"
+    },
+    "variation": {
+      "sign": ">=",
+      "value": 45.54669
+    }
+  },
+  {
+    "drop": {
+      "sign": "<=",
+      "value": 24.403671
+    },
+    "company": {
+      "sign": "!=",
+      "value": "IBM"
+    },
+    "value": {
+      "sign": "<=",
+      "value": 49.312206
+    }
+  },
+  {
+    "company": {
+      "sign": "=",
+      "value": "Amazon"
+    },
+    "variation": {
+      "sign": ">=",
+      "value": -3.6142287
+    }
+  },
+  {
+    "date": {
+      "sign": "!=",
+      "value": "2023-12-25"
+    },
+    "company": {
+      "sign": "!=",
+      "value": "Netflix"
+    },
+    "value": {
+      "sign": "<",
+      "value": 413.68912
+    }
+  },
+  {
+    "company": {
+      "sign": "=",
+      "value": "Google"
+    },
+    "value": {
+      "sign": "<=",
+      "value": 929.66644
+    },
+    "variation": {
+      "sign": "<=",
+      "value": 47.31109
+    }
+  },
+  {
+    "drop": {
+      "sign": ">",
+      "value": 7.0305247
+    },
+    "value": {
+      "sign": "<",
+      "value": 181.05418
+    },
+    "variation": {
+      "sign": "<=",
+      "value": -34.75286
+    }
+  },
+  {
+    "drop": {
+      "sign": ">",
+      "value": 24.83177
+    },
+    "company": {
+      "sign": "=",
+      "value": "IBM"
+    }
+  },
+  {
+    "date": {
+      "sign": "=",
+      "value": "2024-02-08"
+    },
+    "company": {
+      "sign": "!=",
+      "value": "Amazon"
+    },
+    "variation": {
+      "sign": ">",
+      "value": -24.39961
+    }
+  },
+  {
+    "date": {
+      "sign": "!=",
+      "value": "2024-01-03"
+    },
+    "value": {
+      "sign": "<",
+      "value": 357.81354
+    },
+    "variation": {
+      "sign": ">=",
+      "value": 7.4394255
+    }
+  },
+  {
     "company": {
       "sign": "=",
       "value": "Microsoft"
     },
     "value": {
       "sign": ">=",
-      "value": 277.70703
+      "value": 935.47955
+    },
+    "variation": {
+      "sign": ">=",
+      "value": -18.144798
     }
   },
   {
@@ -1059,88 +969,314 @@
       "value": "Apple"
     },
     "value": {
-      "sign": "<",
-      "value": 695.59106
+      "sign": ">",
+      "value": 992.5085
+    }
+  },
+  {
+    "company": {
+      "sign": "=",
+      "value": "Tesla"
+    },
+    "variation": {
+      "sign": "<=",
+      "value": 4.7959933
+    }
+  },
+  {
+    "company": {
+      "sign": "=",
+      "value": "Apple"
+    },
+    "value": {
+      "sign": ">",
+      "value": 164.77023
+    }
+  },
+  {
+    "company": {
+      "sign": "=",
+      "value": "Amazon"
+    },
+    "value": {
+      "sign": ">",
+      "value": 83.861465
+    },
+    "variation": {
+      "sign": ">",
+      "value": 6.694827
     }
   },
   {
     "drop": {
-      "sign": ">",
-      "value": 20.591896
+      "sign": "<=",
+      "value": 21.900415
+    },
+    "date": {
+      "sign": "!=",
+      "value": "2024-02-04"
     },
     "company": {
       "sign": "=",
-      "value": "IBM"
-    },
-    "value": {
-      "sign": "<=",
-      "value": 114.71894
+      "value": "Apple"
     }
   },
   {
-    "date": {
-      "sign": "=",
-      "value": "2024-01-20"
+    "drop": {
+      "sign": ">=",
+      "value": 9.382985
     },
     "company": {
       "sign": "=",
       "value": "Intel"
     },
+    "variation": {
+      "sign": "<=",
+      "value": -38.913696
+    }
+  },
+  {
+    "company": {
+      "sign": "!=",
+      "value": "Amazon"
+    },
     "value": {
       "sign": "<",
-      "value": 769.619
+      "value": 553.2728
+    },
+    "variation": {
+      "sign": "<=",
+      "value": 13.326587
+    }
+  },
+  {
+    "company": {
+      "sign": "=",
+      "value": "Netflix"
+    },
+    "value": {
+      "sign": ">=",
+      "value": 116.749954
+    }
+  },
+  {
+    "date": {
+      "sign": "=",
+      "value": "2024-01-14"
+    },
+    "company": {
+      "sign": "!=",
+      "value": "Facebook"
+    },
+    "value": {
+      "sign": "<",
+      "value": 608.3142
+    }
+  },
+  {
+    "drop": {
+      "sign": "<=",
+      "value": 21.807903
+    },
+    "company": {
+      "sign": "=",
+      "value": "Tesla"
+    },
+    "variation": {
+      "sign": ">=",
+      "value": 48.07356
+    }
+  },
+  {
+    "drop": {
+      "sign": ">=",
+      "value": 8.910127
+    },
+    "company": {
+      "sign": "!=",
+      "value": "Facebook"
+    }
+  },
+  {
+    "company": {
+      "sign": "!=",
+      "value": "Oracle"
+    },
+    "variation": {
+      "sign": "<",
+      "value": -15.138284
+    }
+  },
+  {
+    "company": {
+      "sign": "=",
+      "value": "Oracle"
+    },
+    "value": {
+      "sign": ">",
+      "value": 965.54443
+    },
+    "variation": {
+      "sign": "<",
+      "value": -48.7255
+    }
+  },
+  {
+    "company": {
+      "sign": "=",
+      "value": "Google"
+    },
+    "variation": {
+      "sign": "<=",
+      "value": 1.8637594
+    }
+  },
+  {
+    "drop": {
+      "sign": "<=",
+      "value": 0.12783508
+    },
+    "company": {
+      "sign": "=",
+      "value": "Google"
+    },
+    "variation": {
+      "sign": ">=",
+      "value": 23.268036
+    }
+  },
+  {
+    "company": {
+      "sign": "!=",
+      "value": "Netflix"
+    },
+    "value": {
+      "sign": "<",
+      "value": 735.3427
+    }
+  },
+  {
+    "drop": {
+      "sign": "<=",
+      "value": 10.448528
+    },
+    "company": {
+      "sign": "=",
+      "value": "Facebook"
+    },
+    "variation": {
+      "sign": "<",
+      "value": 11.22004
     }
   },
   {
     "drop": {
       "sign": ">",
-      "value": 11.129433
-    },
-    "value": {
-      "sign": ">=",
-      "value": 404.33405
-    },
-    "variation": {
-      "sign": "<=",
-      "value": -28.829775
-    }
-  },
-  {
-    "drop": {
-      "sign": ">=",
-      "value": 17.054094
+      "value": 20.189482
     },
     "company": {
       "sign": "=",
-      "value": "Oracle"
+      "value": "Intel"
+    }
+  },
+  {
+    "company": {
+      "sign": "=",
+      "value": "Google"
     },
-    "variation": {
-      "sign": "<=",
-      "value": 8.72093
+    "value": {
+      "sign": "<",
+      "value": 596.9371
+    }
+  },
+  {
+    "drop": {
+      "sign": "<",
+      "value": 23.51339
+    },
+    "company": {
+      "sign": "!=",
+      "value": "Tesla"
     }
   },
   {
     "drop": {
       "sign": ">=",
-      "value": 23.996977
+      "value": 14.235067
+    },
+    "company": {
+      "sign": "=",
+      "value": "Apple"
+    },
+    "variation": {
+      "sign": ">",
+      "value": 9.316626
+    }
+  },
+  {
+    "drop": {
+      "sign": "<=",
+      "value": 17.632854
+    },
+    "company": {
+      "sign": "!=",
+      "value": "Microsoft"
+    },
+    "variation": {
+      "sign": "<=",
+      "value": -38.595757
+    }
+  },
+  {
+    "drop": {
+      "sign": ">",
+      "value": 14.4115305
+    },
+    "company": {
+      "sign": "!=",
+      "value": "Netflix"
+    },
+    "variation": {
+      "sign": "<",
+      "value": 24.203205
+    }
+  },
+  {
+    "company": {
+      "sign": "!=",
+      "value": "IBM"
+    },
+    "value": {
+      "sign": "<=",
+      "value": 377.26447
+    }
+  },
+  {
+    "drop": {
+      "sign": ">",
+      "value": 18.23238
     },
     "company": {
       "sign": "=",
       "value": "Tesla"
     },
     "value": {
-      "sign": "<=",
-      "value": 603.8893
+      "sign": ">=",
+      "value": 263.18536
     }
   },
   {
-    "drop": {
-      "sign": ">=",
-      "value": 0.26298288
+    "date": {
+      "sign": "=",
+      "value": "2024-03-18"
     },
-    "variation": {
-      "sign": "<",
-      "value": 36.198483
+    "company": {
+      "sign": "=",
+      "value": "Amazon"
+    },
+    "value": {
+      "sign": "<=",
+      "value": 244.59598
     }
   }
 ]
