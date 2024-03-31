@@ -1,0 +1,177 @@
+[
+  {
+    "drop": 15.156106,
+    "date": "2024-01-18",
+    "company": "Facebook",
+    "value": 462.69867,
+    "variation": -23.097858
+  },
+  {
+    "drop": 12.823546,
+    "date": "2024-01-15",
+    "company": "Google",
+    "value": 673.8017,
+    "variation": 10.5828085
+  },
+  {
+    "drop": 20.201544,
+    "date": "2024-01-16",
+    "company": "Microsoft",
+    "value": 306.36462,
+    "variation": 37.927113
+  },
+  {
+    "drop": 17.999798,
+    "date": "2023-12-31",
+    "company": "Oracle",
+    "value": 272.4185,
+    "variation": 49.496754
+  },
+  {
+    "drop": 6.838977,
+    "date": "2024-01-13",
+    "company": "Facebook",
+    "value": 528.5656,
+    "variation": 15.355141
+  },
+  {
+    "drop": 6.5196686,
+    "date": "2024-01-01",
+    "company": "Facebook",
+    "value": 46.065258,
+    "variation": 30.790758
+  },
+  {
+    "drop": 10.06307,
+    "date": "2024-02-15",
+    "company": "Facebook",
+    "value": 165.0327,
+    "variation": -43.75763
+  },
+  {
+    "drop": 17.119,
+    "date": "2024-02-29",
+    "company": "Amazon",
+    "value": 210.73152,
+    "variation": 4.0077424
+  },
+  {
+    "drop": 19.654978,
+    "date": "2024-01-06",
+    "company": "Tesla",
+    "value": 573.7993,
+    "variation": -44.531742
+  },
+  {
+    "drop": 14.093843,
+    "date": "2024-04-01",
+    "company": "IBM",
+    "value": 262.4221,
+    "variation": -8.773334
+  },
+  {
+    "drop": 11.295117,
+    "date": "2024-01-01",
+    "company": "Apple",
+    "value": 631.1135,
+    "variation": -25.973171
+  },
+  {
+    "drop": 1.6375543,
+    "date": "2024-03-11",
+    "company": "Apple",
+    "value": 400.26227,
+    "variation": -0.006723661
+  },
+  {
+    "drop": 10.983821,
+    "date": "2024-02-24",
+    "company": "IBM",
+    "value": 211.68008,
+    "variation": -46.52295
+  },
+  {
+    "drop": 21.877542,
+    "date": "2024-01-14",
+    "company": "Amazon",
+    "value": 750.3553,
+    "variation": -16.042217
+  },
+  {
+    "drop": 23.203363,
+    "date": "2024-03-28",
+    "company": "Amazon",
+    "value": 495.33923,
+    "variation": -1.8948749
+  },
+  {
+    "drop": 13.999424,
+    "date": "2024-01-27",
+    "company": "Google",
+    "value": 253.279,
+    "variation": -45.42745
+  },
+  {
+    "drop": 15.234728,
+    "date": "2024-02-13",
+    "company": "Netflix",
+    "value": 22.208813,
+    "variation": 0.7066918
+  },
+  {
+    "drop": 22.947945,
+    "date": "2024-02-27",
+    "company": "Facebook",
+    "value": 124.8062,
+    "variation": -9.449633
+  },
+  {
+    "drop": 18.572744,
+    "date": "2024-01-21",
+    "company": "Tesla",
+    "value": 548.04736,
+    "variation": 21.628428
+  },
+  {
+    "drop": 7.0713687,
+    "date": "2024-01-25",
+    "company": "Apple",
+    "value": 914.79095,
+    "variation": 44.048714
+  },
+  {
+    "drop": 17.277765,
+    "date": "2024-01-11",
+    "company": "Facebook",
+    "value": 382.1253,
+    "variation": 45.476368
+  },
+  {
+    "drop": 24.675339,
+    "date": "2024-03-13",
+    "company": "Oracle",
+    "value": 756.97925,
+    "variation": 31.168789
+  },
+  {
+    "drop": 12.502095,
+    "date": "2023-12-23",
+    "company": "IBM",
+    "value": 100.31292,
+    "variation": 45.17513
+  },
+  {
+    "drop": 1.6729125,
+    "date": "2024-01-25",
+    "company": "Tesla",
+    "value": 759.683,
+    "variation": -32.905846
+  },
+  {
+    "drop": 20.054949,
+    "date": "2023-12-28",
+    "company": "Oracle",
+    "value": 973.63885,
+    "variation": -28.866768
+  }
+]
