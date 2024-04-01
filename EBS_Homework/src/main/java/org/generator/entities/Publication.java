@@ -7,7 +7,6 @@ import org.json.JSONObject;
 
 import java.sql.Date;
 
-
 @Getter
 @Setter
 @NoArgsConstructor
