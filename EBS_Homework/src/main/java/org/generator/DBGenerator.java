@@ -18,7 +18,7 @@ public class DBGenerator {
         return (int) Math.ceil((double) EQUAL_SIGHT_FREQUENCY / 100 * Math.ceil((double) COMPANY_PERCENTAGE / 100 * numberOfSubs));
     }
 
-    public static ArrayList<Integer> splitValue(int number, int nrThreads){
+    public ArrayList<Integer> splitValue(int number, int nrThreads){
         ArrayList<Integer> dividedTasks = new ArrayList<>();
         while(nrThreads>1){
             int split = number/nrThreads;
@@ -126,9 +126,9 @@ public class DBGenerator {
         return listOfSubscriptions;
     }
 
-    public ArrayList<Publication> generatePublications() {
+    public ArrayList<Publication> generatePublications(int numberOfPublications) {
 
-        ArrayList<Publication> listOfPublications = IntStream.range(0, NUMBER_OF_PUBLICATIONS)
+        ArrayList<Publication> listOfPublications = IntStream.range(0, numberOfPublications)
                 .collect(ArrayList::new, (list, i) -> list.add(new Publication()), ArrayList::addAll);
 
            for (Publication publication : listOfPublications) {

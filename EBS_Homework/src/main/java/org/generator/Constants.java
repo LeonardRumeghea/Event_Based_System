@@ -7,8 +7,8 @@ import java.util.List;
 public class Constants {
     public static List<String> COMPARISON_SIGNS = new ArrayList<>(Arrays.asList("=", "!=", ">", ">=", "<", "<="));
     public static List<String> COMPANIES = new ArrayList<>(Arrays.asList("Apple", "Google", "Microsoft", "Amazon", "Facebook", "Netflix", "Tesla", "IBM", "Oracle", "Intel"));
-    public static int NUMBER_OF_SUBSCRIPTIONS = 25000;
-    public static int NUMBER_OF_PUBLICATIONS = 25;
+    public static int NUMBER_OF_SUBSCRIPTIONS = 10000;
+    public static int NUMBER_OF_PUBLICATIONS = 10000;
     public static int COMPANY_PERCENTAGE = 90;
     public static int VALUE_PERCENTAGE = 60;
     public static int DROP_PERCENTAGE = 40;
