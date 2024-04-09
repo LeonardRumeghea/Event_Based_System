@@ -1,0 +1,36 @@
+
+--------------------------------------------------------------
+  Companies: 2.250.000
+  Values: 1.500.000
+  Drops: 1.000.000
+  Variations: 1.250.000
+  Dates: 750.000
+> Generated fields: 6.750.000
+---------------------------------------------------------------
+  Subscriptions: 2.500.000
+  Publications: 2.500.000
+  Threads: 1.024
+---------------------------------------------------------------
+  Creation time with threads for subscriptions:	      3.087 ms
+  Creation time with no threads for subscriptions:	225.091 ms
+  Creation time with threads for publications:	      1.686 ms
+  Creation time with no threads for publications:	    338 ms
+
+
+
+--------------------------------------------------------------
+  Companies: 22.500.000
+  Values: 15.000.000
+  Drops: 10.000.000
+  Variations: 12.500.000
+  Dates: 7.500.000
+> Generated fields: 67.500.000
+--------------------------------------------------------------
+  Subscriptions: 25.000.000
+  Publications: 25.000.000
+  Threads: 2.048
+--------------------------------------------------------------
+  Creation time with threads for subscriptions:	     78.934 ms
+  Creation time with no threads for subscriptions:          ms
+  Creation time with threads for publications:	     20.161 ms
+  Creation time with no threads for publications:	  3.718 ms

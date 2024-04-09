@@ -6,6 +6,7 @@ import org.generator.entities.Subscription;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.generator.entities.Constants.*;
 import static org.generator.entities.Constants.NUMBER_OF_SUBSCRIPTIONS;
@@ -76,13 +77,13 @@ public class Main {
         long endTime = System.currentTimeMillis();
         Utils.timeLogger(endTime - startTime, "subscriptions", false);
 
-//        Utils.writeToJsonFile(
-//                SUBSCRIPTIONS_OUTPUT_FILE,
-//                sub_list
-//                        .stream()
-//                        .map(Subscription::toJson)
-//                        .collect(Collectors.toList())
-//        );
+        Utils.writeToJsonFile(
+                SUBSCRIPTIONS_OUTPUT_FILE,
+                sub_list
+                        .stream()
+                        .map(Subscription::toJson)
+                        .collect(Collectors.toList())
+        );
     }
 
     static void generatePublicationsWithThreads() throws IOException, InterruptedException {
@@ -130,13 +131,13 @@ public class Main {
 
         Utils.timeLogger(endTime - startTime, "publications", false);
 
-//        Utils.writeToJsonFile(
-//                PUBLICATIONS_OUTPUT_FILE,
-//                pub_list
-//                        .stream()
-//                        .map(Publication::toJson)
-//                        .collect(Collectors.toList())
-//        );
+        Utils.writeToJsonFile(
+                PUBLICATIONS_OUTPUT_FILE,
+                pub_list
+                        .stream()
+                        .map(Publication::toJson)
+                        .collect(Collectors.toList())
+        );
     }
 
     public static void main(String[] args) {
@@ -164,10 +165,10 @@ public class Main {
 
         try {
             generateSubscriptionsWithThreads(nrCompany, nrValue, nrDrop, nrVariation, nrDate);
-//            generateSubscriptionsWithoutThreads(nrCompany, nrValue, nrDrop, nrVariation, nrDate, totalFields);
+            generateSubscriptionsWithoutThreads(nrCompany, nrValue, nrDrop, nrVariation, nrDate, totalFields);
 
             generatePublicationsWithThreads();
-//            generatePublicationsWithoutThreads();
+            generatePublicationsWithoutThreads();
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
