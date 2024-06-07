@@ -6,7 +6,6 @@ import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 
@@ -16,8 +15,6 @@ public class RabbitQueue {
     private final RabbitMqConfig config;
     private Connection connection;
     private Channel channel;
-
-    private int index = 0;
 
     private static final Logger logger = LoggerFactory.getLogger(RabbitQueue.class);
     private static final int MAX_RETRIES = 3;
@@ -56,8 +53,8 @@ public class RabbitQueue {
     public void sendMessage(String message) {
         for (int retryCount = 0; retryCount < MAX_RETRIES; retryCount++) {
             try {
-                channel.basicPublish(config.getExchange(), config.getRoutingKey(), null, message.getBytes("UTF-8"));
-                logger.info(" {} Sent '{}'", config.getQueueName(), message);
+                channel.basicPublish(config.getExchange(), config.getRoutingKey(), null, message.getBytes(StandardCharsets.UTF_8));
+                logger.info("[*] Sent to {}: '{}'", config.getQueueName(), message);
                 return;
             } catch (Exception e) {
                 logger.error("Failed to send message. Attempt {}/{}", retryCount + 1, MAX_RETRIES, e);
@@ -69,22 +66,19 @@ public class RabbitQueue {
         throw new RuntimeException("Failed to send message after " + MAX_RETRIES + " attempts");
     }
 
-
     public void receiveMessage() {
         try {
             channel.basicConsume(config.getQueueName(), false, new DefaultConsumer(channel) {
                 @Override
-                public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
+                public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) {
                     for (int retryCount = 0; retryCount < MAX_RETRIES; retryCount++) {
                         try {
                             String message = new String(body, StandardCharsets.UTF_8);
-                            index++;
-                            logger.info(" {} Received '{}'", index, message);
-                            // Add your custom message handling logic here
+                            logger.info(" [+] Received '{}'", message);
+
                             channel.basicAck(envelope.getDeliveryTag(), false);
                             callback(message);
-//                            response.offer(message);
-//                            channel.basicCancel(consumerTag);
+
                             return;
                         } catch (Exception e) {
                             logger.error("Failed to process message. Attempt {}/{}", retryCount + 1, MAX_RETRIES, e);
@@ -98,9 +92,7 @@ public class RabbitQueue {
                     }
                 }
             });
-
             logger.info(" [*] Waiting for messages. To exit press CTRL+C");
-//            return response.take();
         } catch (Exception e) {
             logger.error("Failed to receive messages.", e);
             throw new RuntimeException("Failed to receive messages", e);
@@ -117,4 +109,3 @@ public class RabbitQueue {
         }
     }
 }
-

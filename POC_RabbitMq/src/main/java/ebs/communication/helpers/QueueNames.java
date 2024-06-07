@@ -1,5 +1,6 @@
 package ebs.communication.helpers;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -11,10 +12,9 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import static ebs.communication.entities.Constants.*;
+
 public class QueueNames {
-    private static final String RABBITMQ_SERVER = "http://localhost:15672";
-    private static final String USERNAME = "guest";
-    private static final String PASSWORD = "guest";
 
     private ArrayList<String> queues;
 
@@ -22,8 +22,7 @@ public class QueueNames {
         queues = new ArrayList<>();
     }
 
-
-    public void fetchQueues() throws Exception {
+    public void fetchQueues()  {
         HttpClient client = HttpClient.newHttpClient();
         String auth = USERNAME + ":" + PASSWORD;
         String encodedAuth = java.util.Base64.getEncoder().encodeToString(auth.getBytes());
@@ -34,15 +33,18 @@ public class QueueNames {
                 .GET()
                 .build();
 
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        try {
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-        if (response.statusCode() == 200) {
-            ObjectMapper mapper = new ObjectMapper();
-            JsonNode queuesNode = mapper.readTree(response.body());
+            if (response.statusCode() == 200) {
+                JsonNode queuesNode = new ObjectMapper().readTree(response.body());
+                queues = (ArrayList<String>) queuesNode.findValuesAsText("name");
 
-            queues = (ArrayList<String>) queuesNode.findValuesAsText("name");
-        } else {
-            throw new RuntimeException("Failed to fetch queues: " + response.statusCode() + " " + response.body());
+            } else {
+                throw new RuntimeException("Failed to fetch queues: " + response.statusCode() + " " + response.body());
+            }
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 

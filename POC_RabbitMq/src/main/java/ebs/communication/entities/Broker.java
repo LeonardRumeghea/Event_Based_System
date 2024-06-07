@@ -2,9 +2,9 @@ package ebs.communication.entities;
 
 import ebs.communication.RabbitQueue;
 import ebs.communication.helpers.Tools;
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,7 +13,7 @@ public class Broker extends RabbitQueue {
     List<RabbitQueue> brokers;
     List<RabbitQueue> subs;
 
-    public Broker(String brokerQueue, List<String> brokerQueues, List<String> subQueues) {
+    public Broker(String brokerQueue, @NotNull List<String> brokerQueues, @NotNull List<String> subQueues) {
         super(Tools.getConfigFor(brokerQueue));
         brokers = brokerQueues.stream()
                 .map(e -> new RabbitQueue(Tools.getConfigFor(e)))
@@ -24,24 +24,23 @@ public class Broker extends RabbitQueue {
                 .collect(Collectors.toList());
     }
 
+//    This method is called when a message is received by the broker. It forwards the message to all other brokers and subs
     @Override
     public void callback(String message) {
-        System.out.println(message);
-        JSONObject json = new JSONObject(message);
+        JSONObject jsonObject = new JSONObject(message);
+        String source = jsonObject.getString("source");
+        jsonObject.put("source", getName());
 
-        String source = (String) json.getJSONArray("source").get(0);
-        json.remove("source");
-        json.append("source", getName());
+//        Send the message to all brokers and subs except the source
         for (var broker : brokers) {
             if (broker.getName().equals(source)) {
                 continue;
             }
-
-            broker.sendMessage(json.toString());
+            broker.sendMessage(jsonObject.toString());
         }
 
         for (var sub : subs) {
-            sub.sendMessage(json.toString());
+            sub.sendMessage(jsonObject.toString());
         }
     }
 }

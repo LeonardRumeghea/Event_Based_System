@@ -5,7 +5,7 @@ import ebs.communication.helpers.Tools;
 import org.json.JSONObject;
 
 public class Publisher extends Thread  {
-    private RabbitQueue broker;
+    private final RabbitQueue broker;
 
     public Publisher(String brokerName) {
         super();
@@ -14,12 +14,15 @@ public class Publisher extends Thread  {
 
     @Override
     public void run() {
-        for (int i = 0; i< 10; i++) {
-            var obj = new JSONObject()
-                    .append("message", "testulescu")
-                    .append("source", "madagascar");
+        for (int i = 0; i < 10; i++) {
 
-            this.broker.sendMessage(obj.toString());
+//          Generate a random publication and send it to the broker queue
+
+            JSONObject jsonObj = new JSONObject();
+            jsonObj.put("message", "Do you wanna some 🍺?");
+            jsonObj.put("source", "publisher");
+
+            this.broker.sendMessage(jsonObj.toString());
         }
     }
 }
