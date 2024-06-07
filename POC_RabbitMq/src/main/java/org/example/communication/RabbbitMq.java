@@ -1,0 +1,107 @@
+package org.example.communication;
+
+import com.rabbitmq.client.*;
+import org.example.communication.helpers.RabbitMqConfig;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+
+
+public class RabbbitMq {
+    private final RabbitMqConfig config;
+    private Connection connection;
+    private Channel channel;
+
+    private static final Logger logger = LoggerFactory.getLogger(RabbbitMq.class);
+    private static final int MAX_RETRIES = 3;
+
+    public RabbbitMq(RabbitMqConfig rabbitMqConfig) {
+        this.config = rabbitMqConfig;
+    }
+
+    public void init() {
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setUsername(config.getUsername());
+        factory.setPassword(config.getPassword());
+        factory.setHost(config.getHost());
+        factory.setPort(config.getPort());
+
+        try {
+            connection = factory.newConnection();
+            channel = connection.createChannel();
+
+            channel.exchangeDeclare(config.getExchange(), "direct", true);
+            channel.queueDeclare(config.getQueueName(), true, false, false, null);
+            channel.queueBind(config.getQueueName(), config.getExchange(), config.getRoutingKey());
+            logger.info("RabbitMQ initialized successfully.");
+
+        } catch (Exception e) {
+            logger.error("Failed to initialize RabbitMQ.", e);
+        }
+    }
+
+    public void sendMessage(String message) {
+        for (int retryCount = 0; retryCount < MAX_RETRIES; retryCount++) {
+            try {
+                channel.basicPublish(config.getExchange(), config.getRoutingKey(), null, message.getBytes("UTF-8"));
+                logger.info(" [x] Sent '{}'", message);
+                return;
+            } catch (Exception e) {
+                logger.error("Failed to send message. Attempt {}/{}", retryCount + 1, MAX_RETRIES, e);
+                init();
+            }
+        }
+
+        logger.error("Exceeded maximum retries. Failed to send message.");
+        throw new RuntimeException("Failed to send message after " + MAX_RETRIES + " attempts");
+    }
+
+
+    public String receiveMessage() {
+        final BlockingQueue<String> response = new ArrayBlockingQueue<>(1);
+
+        try {
+            channel.basicConsume(config.getQueueName(), false, new DefaultConsumer(channel) {
+                @Override
+                public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) {
+                    for (int retryCount = 0; retryCount < MAX_RETRIES; retryCount++) {
+                        try {
+                            String message = new String(body, "UTF-8");
+                            logger.info(" [x] Received '{}'", message);
+                            // Add your custom message handling logic here
+                            channel.basicAck(envelope.getDeliveryTag(), false);
+                            response.offer(message);
+                            return;
+                        } catch (Exception e) {
+                            logger.error("Failed to process message. Attempt {}/{}", retryCount + 1, MAX_RETRIES, e);
+                        }
+                    }
+                    logger.error("Exceeded maximum retries. Sending NACK for message.");
+                    try {
+                        channel.basicNack(envelope.getDeliveryTag(), false, true);
+                    } catch (Exception nackException) {
+                        logger.error("Failed to send NACK.", nackException);
+                    }
+                }
+            });
+            logger.info(" [*] Waiting for messages. To exit press CTRL+C");
+            return response.take();
+        } catch (Exception e) {
+            logger.error("Failed to receive messages.", e);
+            throw new RuntimeException("Failed to receive messages", e);
+        }
+    }
+
+    public void close() {
+        try {
+            channel.close();
+            connection.close();
+            logger.info("RabbitMQ connection closed successfully.");
+        } catch (Exception e) {
+            logger.error("Failed to close RabbitMQ connection.", e);
+        }
+    }
+}
+
