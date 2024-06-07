@@ -1,6 +1,10 @@
 package ebs;
 
+import ebs.communication.entities.Broker;
 import ebs.communication.entities.Publisher;
+import ebs.communication.helpers.QueueNames;
+
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -40,8 +44,48 @@ public class Main {
 //        var a = new QueueNames();
 //        a.fetchQueues();
 //        var brokers = a.getBrokers();
-        var task = new Publisher("broker_1");
-        task.start();
-        task.join();
+
+        var namesFetcher = new QueueNames();
+        namesFetcher.fetchQueues();
+        var brokers = namesFetcher.getBrokers();
+        var subs = namesFetcher.getSubs();
+
+        var random = new Random();
+        var upBrokerNeighboursCount = random.nextInt() % 2 + 1;
+        var downBrokerNeighboursCount = 3 - upBrokerNeighboursCount;
+
+        var routeBroker = new Broker(brokers.get(0), Arrays.asList(brokers.get(1), brokers.get(2)), new ArrayList<>());
+        routeBroker.receiveMessage();
+
+        var upClients = new ArrayList<String>();
+        for (var index = 0; index < upBrokerNeighboursCount; index++) {
+            upClients.add(subs.getFirst());
+            subs.removeFirst();
+        }
+
+        var downClients = new ArrayList<String>();
+        for (var index = 0; index < downBrokerNeighboursCount; index++) {
+            downClients.add(subs.getFirst());
+            subs.removeFirst();
+        }
+
+        var upBroker = new Broker(brokers.get(1), Collections.singletonList(brokers.get(0)), upClients);
+        upBroker.receiveMessage();
+
+
+        var downBroker = new Broker(brokers.get(2), Collections.singletonList(brokers.get(0)), downClients);
+        downBroker.receiveMessage();
+
+        List<Thread> tasks = new ArrayList<>();
+        for (var threadIndex = 0; threadIndex < 2; threadIndex++) {
+            var task = new Publisher("broker_1");
+            task.start();
+            tasks.add(task);
+        }
+
+
+        for (var task : tasks) {
+            task.join();
+        }
     }
 }

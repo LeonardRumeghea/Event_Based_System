@@ -2,6 +2,7 @@ package ebs.communication.entities;
 
 import ebs.communication.RabbitQueue;
 import ebs.communication.helpers.Tools;
+import org.json.JSONObject;
 
 public class Publisher extends Thread  {
     private RabbitQueue broker;
@@ -14,7 +15,11 @@ public class Publisher extends Thread  {
     @Override
     public void run() {
         for (int i = 0; i< 10; i++) {
-            this.broker.sendMessage("testulescu " + i);
+            var obj = new JSONObject()
+                    .append("message", "testulescu")
+                    .append("source", "madagascar");
+
+            this.broker.sendMessage(obj.toString());
         }
     }
 }

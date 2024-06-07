@@ -2,6 +2,7 @@ package ebs.communication;
 
 import com.rabbitmq.client.*;
 import ebs.communication.helpers.RabbitMqConfig;
+import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,6 +11,8 @@ import java.nio.charset.StandardCharsets;
 
 
 public class RabbitQueue {
+    @Getter
+    private final String name;
     private final RabbitMqConfig config;
     private Connection connection;
     private Channel channel;
@@ -21,6 +24,8 @@ public class RabbitQueue {
 
     public RabbitQueue(RabbitMqConfig rabbitMqConfig) {
         this.config = rabbitMqConfig;
+        this.name = rabbitMqConfig.getQueueName();
+        this.init();
     }
 
     public void init() {
@@ -52,7 +57,7 @@ public class RabbitQueue {
         for (int retryCount = 0; retryCount < MAX_RETRIES; retryCount++) {
             try {
                 channel.basicPublish(config.getExchange(), config.getRoutingKey(), null, message.getBytes("UTF-8"));
-                logger.info(" [x] Sent '{}'", message);
+                logger.info(" {} Sent '{}'", config.getQueueName(), message);
                 return;
             } catch (Exception e) {
                 logger.error("Failed to send message. Attempt {}/{}", retryCount + 1, MAX_RETRIES, e);

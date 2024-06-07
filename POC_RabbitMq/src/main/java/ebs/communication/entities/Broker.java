@@ -2,7 +2,9 @@ package ebs.communication.entities;
 
 import ebs.communication.RabbitQueue;
 import ebs.communication.helpers.Tools;
+import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,11 +26,22 @@ public class Broker extends RabbitQueue {
 
     @Override
     public void callback(String message) {
+        System.out.println(message);
+        JSONObject json = new JSONObject(message);
+
+        String source = (String) json.getJSONArray("source").get(0);
+        json.remove("source");
+        json.append("source", getName());
         for (var broker : brokers) {
-            broker.sendMessage(message);
+            if (broker.getName().equals(source)) {
+                continue;
+            }
+
+            broker.sendMessage(json.toString());
         }
-        for (var sub : subs) {
-            sub.sendMessage(message);
-        }
+
+//        for (var sub : subs) {
+//            sub.sendMessage(json.toString());
+//        }
     }
 }
