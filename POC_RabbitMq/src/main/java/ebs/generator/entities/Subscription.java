@@ -1,13 +1,13 @@
-package org.generator.entities;
+package ebs.generator.entities;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.generator.Utils;
+import ebs.generator.Utils;
 import org.json.JSONObject;
 
 import java.sql.Date;
 
-import static org.generator.entities.Constants.*;
+import static ebs.generator.entities.Constants.*;
 
 @Getter
 @NoArgsConstructor

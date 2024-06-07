@@ -1,4 +1,4 @@
-package org.generator.entities;
+package ebs.generator.entities;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

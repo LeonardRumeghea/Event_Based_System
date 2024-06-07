@@ -1,8 +1,8 @@
-package org.generator;
+package ebs.generator;
 
 import lombok.NoArgsConstructor;
-import org.generator.entities.Publication;
-import org.generator.entities.Subscription;
+import ebs.generator.entities.Publication;
+import ebs.generator.entities.Subscription;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.stream.IntStream;
 
-import static org.generator.entities.Constants.*;
+import static ebs.generator.entities.Constants.*;
 
 @NoArgsConstructor
 public class DBGenerator {

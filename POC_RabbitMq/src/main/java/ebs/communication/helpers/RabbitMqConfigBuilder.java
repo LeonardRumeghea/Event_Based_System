@@ -1,4 +1,4 @@
-package org.example.communication.helpers;
+package ebs.communication.helpers;
 
 public class RabbitMqConfigBuilder {
     private final RabbitMqConfig rabbitMq;

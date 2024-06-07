@@ -1,6 +1,6 @@
-package org.generator;
+package ebs.generator;
 
-import org.generator.entities.Constants;
+import ebs.generator.entities.Constants;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
@@ -13,9 +13,6 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static org.generator.entities.Constants.COMPANY_PERCENTAGE;
-import static org.generator.entities.Constants.EQUAL_SIGHT_FREQUENCY;
 
 public class Utils {
 
@@ -50,7 +47,7 @@ public class Utils {
     }
 
     public static int equalSignCalculator(int numberOfSubs){
-        return (int) Math.ceil((double) EQUAL_SIGHT_FREQUENCY / 100 * Math.ceil((double) COMPANY_PERCENTAGE / 100 * numberOfSubs));
+        return (int) Math.ceil((double) Constants.EQUAL_SIGHT_FREQUENCY / 100 * Math.ceil((double) Constants.COMPANY_PERCENTAGE / 100 * numberOfSubs));
     }
 
     public static @NotNull ArrayList<Integer> splitValue(int number, int nrThreads){
