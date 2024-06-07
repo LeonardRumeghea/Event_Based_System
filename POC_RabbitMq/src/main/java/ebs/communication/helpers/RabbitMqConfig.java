@@ -1,4 +1,4 @@
-package org.example.communication.helpers;
+package ebs.communication.helpers;
 
 public class RabbitMqConfig {
     private String username;
