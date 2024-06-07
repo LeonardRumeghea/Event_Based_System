@@ -40,8 +40,8 @@ public class Broker extends RabbitQueue {
             broker.sendMessage(json.toString());
         }
 
-//        for (var sub : subs) {
-//            sub.sendMessage(json.toString());
-//        }
+        for (var sub : subs) {
+            sub.sendMessage(json.toString());
+        }
     }
 }
