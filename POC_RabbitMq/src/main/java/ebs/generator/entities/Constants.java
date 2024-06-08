@@ -1,4 +1,4 @@
-package org.generator.entities;
+package ebs.generator.entities;
 
 import java.util.ArrayList;
 import java.util.Arrays;

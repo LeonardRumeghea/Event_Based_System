@@ -1,13 +1,14 @@
-package org.generator.entities;
+package ebs.generator.entities;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.generator.Utils;
+import ebs.generator.Utils;
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONObject;
 
 import java.sql.Date;
 
-import static org.generator.entities.Constants.*;
+import static ebs.generator.entities.Constants.*;
 
 @Getter
 @NoArgsConstructor
@@ -68,12 +69,45 @@ public class Subscription {
             if (drop        != null)  put("drop", drop.toJson());
             if (variation   != null)  put("variation", variation.toJson());
             if (date        != null)  put("date", date.toJson());
-
         }};
+    }
+
+    public static @NotNull Subscription fromJson(@NotNull JSONObject json){
+        Subscription subscription = new Subscription();
+        if (json.has("company")) {
+            subscription.company = new Pair<String, String>().fromJson(json.getJSONObject("company"));
+        }
+        if (json.has("value")) {
+            subscription.value = new Pair<String, Float>().fromJson(json.getJSONObject("value"));
+        }
+        if (json.has("drop")) {
+            subscription.drop = new Pair<String, Float>().fromJson(json.getJSONObject("drop"));
+        }
+        if (json.has("variation")) {
+            subscription.variation = new Pair<String, Float>().fromJson(json.getJSONObject("variation"));
+        }
+        if (json.has("date")) {
+            subscription.date = new Pair<String, Date>().fromJson(json.getJSONObject("date"));
+        }
+        return subscription;
     }
 
     @Override
     public String toString() {
         return toJson().toString(4);
+    }
+
+    public boolean matches(JSONObject jsonObject) {
+
+        Subscription other = Subscription.fromJson(jsonObject);
+
+        if (company != null && !company.equals(other.company)) return false;
+        if (value != null && !value.equals(other.value)) return false;
+        if (drop != null && !drop.equals(other.drop)) return false;
+        if (variation != null && !variation.equals(other.variation)) return false;
+        if (date != null && !date.equals(other.date)) return false;
+
+        return true;
+
     }
 }

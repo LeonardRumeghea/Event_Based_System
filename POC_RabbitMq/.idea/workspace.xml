@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ecc2970c-1b41-4a6d-b9ef-b43179e7da35" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ebs/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ebs/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ebs/communication/entities/Broker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ebs/communication/entities/Broker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ebs/communication/entities/Publisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ebs/communication/entities/Publisher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ebs/communication/entities/Subscriber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ebs/communication/entities/Subscriber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ebs/communication/helpers/QueueNames.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ebs/communication/helpers/QueueNames.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ebs/communication/helpers/Tools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ebs/communication/helpers/Tools.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ebs/generator/DBGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ebs/generator/DBGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ebs/generator/entities/Pair.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ebs/generator/entities/Pair.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ebs/generator/entities/Publication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ebs/generator/entities/Publication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ebs/generator/entities/Subscription.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ebs/generator/entities/Subscription.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;LeonardRumeghea&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/LeonardRumeghea/Event_Based_System&quot;,
+    &quot;accountId&quot;: &quot;4ee251d1-2158-4297-b584-d2f72b22b5b9&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2hZLB8ZqbmtzfMfQwrGjuYNS6TE" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "configurable.group.editor",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ebs.Main" />
+      <module name="POC_RabbitMq" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ebs.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ecc2970c-1b41-4a6d-b9ef-b43179e7da35" name="Changes" comment="" />
+      <created>1709052668251</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1709052668251</updated>
+      <workItem from="1709052669275" duration="55000" />
+      <workItem from="1717796517341" duration="286000" />
+      <workItem from="1717796826014" duration="210000" />
+      <workItem from="1717830590473" duration="15071000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ebs/communication/helpers/Tools.java</url>
+          <line>65</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ebs/generator/entities/Subscription.java</url>
+          <line>79</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
