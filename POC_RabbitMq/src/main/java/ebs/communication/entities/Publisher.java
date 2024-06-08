@@ -4,6 +4,8 @@ import ebs.communication.RabbitQueue;
 import ebs.communication.helpers.Tools;
 import org.json.JSONObject;
 
+import static ebs.communication.entities.Constants.PUBLICATION_TYPE;
+
 public class Publisher extends Thread  {
     private final RabbitQueue broker;
 
@@ -18,9 +20,10 @@ public class Publisher extends Thread  {
 
 //          Generate a random publication and send it to the broker queue
 
-            JSONObject jsonObj = new JSONObject();
-            jsonObj.put("message", "Do you wanna some 🍺?");
-            jsonObj.put("source", "publisher");
+            JSONObject jsonObj = new JSONObject()
+                    .put("source", "publisher")
+                    .put("type", PUBLICATION_TYPE)
+                    .put("message", "Do you wanna some 🍺?");
 
             this.broker.sendMessage(jsonObj.toString());
         }

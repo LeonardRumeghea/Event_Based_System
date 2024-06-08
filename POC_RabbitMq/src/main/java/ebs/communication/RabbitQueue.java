@@ -3,6 +3,7 @@ package ebs.communication;
 import com.rabbitmq.client.*;
 import ebs.communication.helpers.RabbitMqConfig;
 import lombok.Getter;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,7 +17,7 @@ public class RabbitQueue {
     private Connection connection;
     private Channel channel;
 
-    private static final Logger logger = LoggerFactory.getLogger(RabbitQueue.class);
+    protected static final Logger logger = LoggerFactory.getLogger(RabbitQueue.class);
     private static final int MAX_RETRIES = 3;
 
     public RabbitQueue(RabbitMqConfig rabbitMqConfig) {
@@ -53,8 +54,9 @@ public class RabbitQueue {
     public void sendMessage(String message) {
         for (int retryCount = 0; retryCount < MAX_RETRIES; retryCount++) {
             try {
+                JSONObject jsonObject = new JSONObject(message);
+                log("S", jsonObject.getString("source"), getName(), jsonObject.getString("message"));
                 channel.basicPublish(config.getExchange(), config.getRoutingKey(), null, message.getBytes(StandardCharsets.UTF_8));
-                logger.info("[*] Sent to {}: '{}'", config.getQueueName(), message);
                 return;
             } catch (Exception e) {
                 logger.error("Failed to send message. Attempt {}/{}", retryCount + 1, MAX_RETRIES, e);
@@ -73,10 +75,14 @@ public class RabbitQueue {
                 public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) {
                     for (int retryCount = 0; retryCount < MAX_RETRIES; retryCount++) {
                         try {
-                            String message = new String(body, StandardCharsets.UTF_8);
-                            logger.info(" [+] Received '{}'", message);
 
                             channel.basicAck(envelope.getDeliveryTag(), false);
+
+                            String message = new String(body, StandardCharsets.UTF_8);
+
+                            JSONObject jsonObject = new JSONObject(message);
+                            log("R", jsonObject.getString("source"), getName(), jsonObject.getString("message"));
+
                             callback(message);
 
                             return;
@@ -97,6 +103,10 @@ public class RabbitQueue {
             logger.error("Failed to receive messages.", e);
             throw new RuntimeException("Failed to receive messages", e);
         }
+    }
+
+    public void log(String direction, String from, String to, String message) {
+        logger.info("[{}] {} -> {}: M: '{}'", direction, from, to, message);
     }
 
     public void close() {
