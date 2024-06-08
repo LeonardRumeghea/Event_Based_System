@@ -47,16 +47,15 @@ public class RabbitQueue {
         }
     }
 
-    public void callback(String message) {
-        System.out.println(message);
+    public void callback(byte[] message) {
+        System.out.println("Implement me");
     }
 
-    public void sendMessage(String message) {
+    public void sendMessage(byte[] message) {
         for (int retryCount = 0; retryCount < MAX_RETRIES; retryCount++) {
             try {
-                JSONObject jsonObject = new JSONObject(message);
-                log("S", jsonObject.getString("source"), getName(), jsonObject.getString("message"));
-                channel.basicPublish(config.getExchange(), config.getRoutingKey(), null, message.getBytes(StandardCharsets.UTF_8));
+//                log("S", jsonObject.getString("source"), getName(), jsonObject.getString("message"));
+                channel.basicPublish(config.getExchange(), config.getRoutingKey(), null, message);
                 return;
             } catch (Exception e) {
                 logger.error("Failed to send message. Attempt {}/{}", retryCount + 1, MAX_RETRIES, e);
@@ -78,12 +77,10 @@ public class RabbitQueue {
 
                             channel.basicAck(envelope.getDeliveryTag(), false);
 
-                            String message = new String(body, StandardCharsets.UTF_8);
+//                            JSONObject jsonObject = new JSONObject(body);
+//                            log("R", jsonObject.getString("source"), getName(), jsonObject.getString("message"));
 
-                            JSONObject jsonObject = new JSONObject(message);
-                            log("R", jsonObject.getString("source"), getName(), jsonObject.getString("message"));
-
-                            callback(message);
+                            callback(body);
 
                             return;
                         } catch (Exception e) {

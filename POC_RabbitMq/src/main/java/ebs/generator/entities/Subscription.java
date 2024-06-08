@@ -1,5 +1,6 @@
 package ebs.generator.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import ebs.generator.Utils;
@@ -12,6 +13,7 @@ import static ebs.generator.entities.Constants.*;
 
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Subscription {
     private Pair<String, String> company    = null;
     private Pair<String, Float> value       = null;

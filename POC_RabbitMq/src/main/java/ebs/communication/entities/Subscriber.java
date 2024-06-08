@@ -4,12 +4,16 @@ import com.google.protobuf.InvalidProtocolBufferException;
 import ebs.communication.RabbitQueue;
 import ebs.communication.helpers.Tools;
 import ebs.generator.DBGenerator;
+import ebs.generator.entities.Publication;
 import ebs.generator.entities.Subscription;
 import lombok.Getter;
 import org.example.protobuf.AddressBookProtos;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import static ebs.communication.entities.Constants.SUBSCRIPTION_TYPE;
 
@@ -26,21 +30,35 @@ public class Subscriber extends RabbitQueue {
     }
 
     @Override
-    public void callback(String message) {
-        JSONObject jsonObject = new JSONObject(message);
-        String source = jsonObject.getString("source");
-        String messageContent = jsonObject.getString("message");
+    public void callback(byte[] message) {
+        AddressBookProtos.MessageWrapper deserializedMessage = null;
+        try {
+            deserializedMessage = AddressBookProtos.MessageWrapper.parseFrom(message);
+        } catch (InvalidProtocolBufferException e) {
+            throw new RuntimeException(e);
+        }
+
+        var messageContent = deserializedMessage.getPublication();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+        java.sql.Date date = null;
+
+        try {
+            var tmpDate = dateFormat.parse((String) messageContent.getDate());
+            date = new java.sql.Date(tmpDate.getTime());
+        } catch (Exception e) {
+            logger.error("Something went wrong: " + e);
+        }
+        var publication = new Publication(
+                messageContent.getCompany(),
+                messageContent.getValue(),
+                messageContent.getDrop(),
+                messageContent.getVariation(),
+                date
+        );
+        System.out.println("I found publication " + publication);
     }
 
-
-    public void subscribe() {
-        JSONObject jsonObject = new JSONObject()
-                .put("type", SUBSCRIPTION_TYPE)
-                .put("source", name)
-                .put("message", "Hello, I am a subscriber 😁");
-
-        broker.sendMessage(jsonObject.toString());
-    }
 
     public void generateSubscriptions() {
 //        int companyEqualSign = 15;
@@ -52,14 +70,14 @@ public class Subscriber extends RabbitQueue {
 //        int nrVariation = 10;
 //        int nrDate = 5;
 
-        int companyEqualSign = 2;
+        int companyEqualSign = 3;
         int numberOfSubscriptions = 3;
-        int totalFields = 8;
+        int totalFields = 3;
         int nrCompany = 3;
-        int nrValue = 2;
-        int nrDrop = 1;
+        int nrValue = 0;
+        int nrDrop = 0;
         int nrVariation = 0;
-        int nrDate = 2;
+        int nrDate = 0;
 
 
         ArrayList<Subscription> subscriptions = DBGenerator.generateSubscriptionsList(companyEqualSign, numberOfSubscriptions, totalFields, nrCompany, nrValue, nrDrop, nrVariation, nrDate);

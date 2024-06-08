@@ -23,7 +23,7 @@ public class Publisher extends Thread  {
     @Override
     public void run() {
 
-        int numberOfPublications = 10;
+        int numberOfPublications = 100;
         ArrayList<Publication> publications = DBGenerator.generatePublicationsList(numberOfPublications);
 
         ArrayList<AddressBookProtos.MessageWrapper> protoMessages = new ArrayList<>();
