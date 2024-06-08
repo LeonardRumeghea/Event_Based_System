@@ -65,9 +65,9 @@ public class Subscriber extends RabbitQueue {
                     .put("source", name)
                     .put("message", sub.toJson().toString());
 
-//            System.out.println(jsonObject.toString());
+            System.out.println(jsonObject.toString());
 
-            broker.sendMessage(jsonObject.toString());
+//            broker.sendMessage(jsonObject.toString());
         }
     }
 }

@@ -75,19 +75,19 @@ public class Subscription {
     public static @NotNull Subscription fromJson(@NotNull JSONObject json){
         Subscription subscription = new Subscription();
         if (json.has("company")) {
-            subscription.company = new Pair<String, String>().fromJson(json.getJSONObject("company"));
+            subscription.company = Pair.fromJson(json.getJSONObject("company"));
         }
         if (json.has("value")) {
-            subscription.value = new Pair<String, Float>().fromJson(json.getJSONObject("value"));
+            subscription.value = Pair.fromJson(json.getJSONObject("value"));
         }
         if (json.has("drop")) {
-            subscription.drop = new Pair<String, Float>().fromJson(json.getJSONObject("drop"));
+            subscription.drop = Pair.fromJson(json.getJSONObject("drop"));
         }
         if (json.has("variation")) {
-            subscription.variation = new Pair<String, Float>().fromJson(json.getJSONObject("variation"));
+            subscription.variation = Pair.fromJson(json.getJSONObject("variation"));
         }
         if (json.has("date")) {
-            subscription.date = new Pair<String, Date>().fromJson(json.getJSONObject("date"));
+            subscription.date = Pair.fromJson(json.getJSONObject("date"));
         }
         return subscription;
     }
