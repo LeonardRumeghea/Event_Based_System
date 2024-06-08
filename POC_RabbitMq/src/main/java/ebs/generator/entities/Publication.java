@@ -1,5 +1,6 @@
 package ebs.generator.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,6 +11,7 @@ import java.sql.Date;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Publication {
     private String company;
     private Float value;
@@ -25,6 +27,16 @@ public class Publication {
             put("variation", variation);
             put("date", date);
         }};
+    }
+
+    public static Publication fromJson(JSONObject jsonObject) {
+        String companyValue = jsonObject.getString("company");
+        Float valueValue = (float) jsonObject.getDouble("value");
+        Float dropValue = (float) jsonObject.getDouble("drop");
+        Float variationValue = (float) jsonObject.getDouble("variation");
+        Date dateValue = Date.valueOf(jsonObject.getString("date"));
+
+        return new Publication(companyValue, valueValue, dropValue, variationValue, dateValue);
     }
 
     @Override

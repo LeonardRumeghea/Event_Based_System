@@ -50,13 +50,13 @@ public class QueueNames {
 
     public List<String> getBrokers() {
         return queues.stream()
-                .filter(name -> name.startsWith("broker"))
+                .filter(name -> name.startsWith(BROKER_QUEUE_NAME))
                 .collect(Collectors.toList());
     }
 
     public List<String> getSubs() {
         return queues.stream()
-                .filter(name -> name.startsWith("sub"))
+                .filter(name -> name.startsWith(SUBSCRIBER_QUEUE_NAME))
                 .collect(Collectors.toList());
     }
 }

@@ -8,7 +8,6 @@ import ebs.communication.helpers.QueueNames;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
 
-import javax.swing.*;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -19,6 +18,13 @@ import static ebs.communication.entities.Constants.ROOT_QUEUE_NAME;
 public class Main {
 
     public static void main(String[] args) {
+
+
+//        String a = "32.23";
+//        String b = "52.43";
+
+//        System.out.println(Double.parseDouble(a) - Double.parseDouble(b) > 0);
+
 
         var namesFetcher = new QueueNames();
         namesFetcher.fetchQueues();
@@ -33,13 +39,40 @@ public class Main {
         var subToBrokerMap = brokersList.stream()
                 .collect(Collectors.toMap(
                         Broker::getName,
-                        broker -> broker.getSubs().stream().map(RabbitQueue::getName).collect(Collectors.toList())
+                        broker -> broker.getSubscribers().stream().map(RabbitQueue::getName).collect(Collectors.toList())
                 ));
 
         var subscribers = getSubscribers(subToBrokerMap);
         subscribers.forEach(RabbitQueue::receiveMessage);
-//        subscribers.forEach(Subscriber::generateSubscriptions);
 
+        var subSubscriberThreads = new ArrayList<Thread>();
+        subscribers.forEach(
+                subscriber -> {
+                    Runnable myThread = subscriber::generateSubscriptions;
+                    Thread run = new Thread(myThread);
+                    subSubscriberThreads.add(run);
+                }
+        );
+
+        subSubscriberThreads.forEach(Thread::start);
+        subSubscriberThreads.forEach(
+                thread -> {
+                    try {
+                        thread.join();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+        );
+
+        System.out.println("[!] Subscriptions generated");
+
+//        TODO: Find a better way to wait for routing table to be generated
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
 
 //       Create the publishers and start them
         startPublishers();

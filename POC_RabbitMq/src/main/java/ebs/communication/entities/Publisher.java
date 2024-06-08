@@ -2,6 +2,7 @@ package ebs.communication.entities;
 
 import ebs.communication.RabbitQueue;
 import ebs.communication.helpers.Tools;
+import ebs.generator.DBGenerator;
 import org.json.JSONObject;
 
 import static ebs.communication.entities.Constants.PUBLICATION_TYPE;
@@ -16,16 +17,18 @@ public class Publisher extends Thread  {
 
     @Override
     public void run() {
-        for (int i = 0; i < 10; i++) {
 
-//          Generate a random publication and send it to the broker queue
+        int numberOfPublications = 10;
+        var publications = DBGenerator.generatePublicationsList(numberOfPublications);
 
-            JSONObject jsonObj = new JSONObject()
-                    .put("source", "publisher")
+        for (var pub : publications) {
+
+            JSONObject jsonObject = new JSONObject()
                     .put("type", PUBLICATION_TYPE)
-                    .put("message", "Do you wanna some 🍺?");
+                    .put("source", "publisher")
+                    .put("message", pub.toJson().toString());
 
-            this.broker.sendMessage(jsonObj.toString());
+            this.broker.sendMessage(jsonObject.toString());
         }
     }
 }

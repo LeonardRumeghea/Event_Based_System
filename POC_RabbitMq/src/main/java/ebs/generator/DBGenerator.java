@@ -15,7 +15,7 @@ import static ebs.generator.entities.Constants.*;
 @NoArgsConstructor
 public class DBGenerator {
 
-    private int getValidAttribute(@NotNull ArrayList<Integer> counts, Subscription subscription) {
+    private static int getValidAttribute(@NotNull ArrayList<Integer> counts, Subscription subscription) {
 
         if (counts.getFirst() == 0) {
             return -1;
@@ -33,7 +33,7 @@ public class DBGenerator {
         return -1;
     }
 
-    private boolean populateSubscriptionRandom(@NotNull ArrayList<Integer> counts, Subscription subscription, ArrayList<String> companiesSigns) {
+    private static boolean populateSubscriptionRandom(@NotNull ArrayList<Integer> counts, Subscription subscription, ArrayList<String> companiesSigns) {
 
         int atr = getValidAttribute(counts, subscription);
         if (atr == -1) { return false; }
@@ -55,7 +55,7 @@ public class DBGenerator {
         return true;
     }
 
-    public ArrayList<Subscription> generateSubscriptions(int companyEqualSign, int numberOfSubscriptions, int totalFields, int nrCompany, int nrValue, int nrDrop, int nrVariation, int nrDate){
+    public static ArrayList<Subscription> generateSubscriptionsList(int companyEqualSign, int numberOfSubscriptions, int totalFields, int nrCompany, int nrValue, int nrDrop, int nrVariation, int nrDate){
 
 //        Contains the number of each type of field that needs to be generated
         ArrayList<Integer> counts = new ArrayList<>(Arrays.asList(totalFields, nrCompany, nrValue, nrDrop, nrVariation, nrDate));
@@ -83,7 +83,7 @@ public class DBGenerator {
         return listOfSubscriptions;
     }
 
-    public ArrayList<Publication> generatePublications(int numberOfPublications) {
+    public static ArrayList<Publication> generatePublicationsList(int numberOfPublications) {
 
         ArrayList<Publication> listOfPublications = IntStream.range(0, numberOfPublications)
                 .collect(ArrayList::new, (list, i) -> list.add(new Publication()), ArrayList::addAll);
