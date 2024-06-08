@@ -11,6 +11,9 @@ import java.util.stream.Collectors;
 import static org.generator.entities.Constants.*;
 import static org.generator.entities.Constants.NUMBER_OF_SUBSCRIPTIONS;
 
+import com.google.protobuf.InvalidProtocolBufferException;
+import org.example.protobuf.AddressBookProtos;
+
 public class Main {
 
     static void generateSubscriptionsWithThreads(int nrCompany, int nrValue, int nrDrop, int nrVariation, int nrDate)
@@ -76,6 +79,51 @@ public class Main {
 //        Stop the timer for the creation of the subscriptions without threads
         long endTime = System.currentTimeMillis();
         Utils.timeLogger(endTime - startTime, "subscriptions", false);
+
+
+        ArrayList<AddressBookProtos.MessageWrapper> protoMessages = new ArrayList<>();
+
+        for (Subscription sub : sub_list){
+            AddressBookProtos.Subscription.Builder protoSubBuilder = AddressBookProtos.Subscription.newBuilder();
+            if(sub.getVariation() != null){
+                protoSubBuilder.setVariation(AddressBookProtos.SubscriptionFieldFloat.newBuilder()
+                        .setSign(sub.getVariation().getFirst())
+                        .setValue(sub.getVariation().getSecond()));
+            }
+            if(sub.getValue() != null){
+                protoSubBuilder.setValue(AddressBookProtos.SubscriptionFieldFloat.newBuilder()
+                        .setSign(sub.getValue().getFirst())
+                        .setValue(sub.getValue().getSecond()));
+            }
+            if(sub.getDrop() != null){
+                protoSubBuilder.setDrop(AddressBookProtos.SubscriptionFieldFloat.newBuilder()
+                        .setSign(sub.getDrop().getFirst())
+                        .setValue(sub.getDrop().getSecond()));
+            }
+            if(sub.getDate() != null){
+                protoSubBuilder.setDate(AddressBookProtos.SubscriptionFieldString.newBuilder()
+                        .setSign(sub.getDate().getFirst())
+                        .setValue(String.valueOf(sub.getDate().getSecond())));
+            }
+            if(sub.getCompany() != null){
+                protoSubBuilder.setCompany(AddressBookProtos.SubscriptionFieldString.newBuilder()
+                        .setSign(sub.getCompany().getFirst())
+                        .setValue(sub.getCompany().getSecond()));
+            }
+            AddressBookProtos.Subscription protoSub = protoSubBuilder.build();
+
+            protoMessages.add(AddressBookProtos.MessageWrapper.newBuilder()
+                            .setType("subscription")
+                            .setSource("publisher")
+                            .setTimestamp(System.currentTimeMillis())
+                            .setSubscription(protoSub)
+                            .build());
+            //System.out.println(sub.getVariation());
+        }
+
+        for (AddressBookProtos.MessageWrapper message: protoMessages){
+            System.out.println(message.getTimestamp());
+        }
 
         Utils.writeToJsonFile(
                 SUBSCRIPTIONS_OUTPUT_FILE,
@@ -164,12 +212,12 @@ public class Main {
         System.out.println("----------------------------------------------------------------------");
 
         try {
-            generateSubscriptionsWithThreads(nrCompany, nrValue, nrDrop, nrVariation, nrDate);
+            //generateSubscriptionsWithThreads(nrCompany, nrValue, nrDrop, nrVariation, nrDate);
             generateSubscriptionsWithoutThreads(nrCompany, nrValue, nrDrop, nrVariation, nrDate, totalFields);
 
-            generatePublicationsWithThreads();
+            //generatePublicationsWithThreads();
             generatePublicationsWithoutThreads();
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }

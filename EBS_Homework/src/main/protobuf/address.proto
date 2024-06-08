@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package protobuf;
+
+import "google/protobuf/any.proto";
+
+option java_package = "org.example.protobuf";
+option java_outer_classname = "AddressBookProtos";
+
+message SubscriptionFieldString {
+  string sign = 1;
+  string value = 2;
+}
+
+message SubscriptionFieldFloat {
+  string sign = 1;
+  float value = 2;
+}
+
+message Subscription {
+  SubscriptionFieldFloat drop = 1;
+  SubscriptionFieldString date = 2;
+  SubscriptionFieldString company = 3;
+  SubscriptionFieldFloat value = 4;
+  SubscriptionFieldFloat variation = 5;
+}
+
+message Publication {
+  float drop = 1;
+  string date = 2;
+  string company = 3;
+  float value = 4;
+  float variation = 5;
+}
+
+message MessageWrapper {
+  string type = 1;
+  string source = 2;
+  uint64 timestamp = 3;
+  oneof message {
+    Subscription subscription = 4;
+    Publication publication = 5;
+  }
+}
