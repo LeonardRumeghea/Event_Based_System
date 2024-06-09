@@ -96,7 +96,7 @@ public class Subscription {
 
     @Override
     public String toString() {
-        return toJson().toString(4);
+        return toJson().toString();
     }
 
     public boolean matches(JSONObject jsonObject) {
@@ -110,6 +110,18 @@ public class Subscription {
         if (date != null && !date.equals(other.date)) return false;
 
         return true;
+    }
 
+    @Override
+    public int hashCode() {
+        return toString().hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Subscription) {
+            return this.toString().equals(obj.toString());
+        }
+        return false;
     }
 }

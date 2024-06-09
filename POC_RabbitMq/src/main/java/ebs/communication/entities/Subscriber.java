@@ -8,10 +8,11 @@ import ebs.generator.entities.Publication;
 import ebs.generator.entities.Subscription;
 import lombok.Getter;
 import org.example.protobuf.AddressBookProtos;
-import org.json.JSONObject;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
@@ -24,65 +25,59 @@ public class Subscriber extends RabbitQueue {
     private final String name;
 
     public Subscriber(String name, String brokerName) {
-        super(Tools.getConfigFor(name));
-        this.broker = new RabbitQueue(Tools.getConfigFor(brokerName));
+        super(Tools.getConfigFor(name), true);
+        this.broker = new RabbitQueue(Tools.getConfigFor(brokerName), true);
         this.name = name;
     }
 
     @Override
     public void callback(byte[] message) {
-        AddressBookProtos.MessageWrapper deserializedMessage = null;
         try {
-            deserializedMessage = AddressBookProtos.MessageWrapper.parseFrom(message);
-        } catch (InvalidProtocolBufferException e) {
-            throw new RuntimeException(e);
-        }
+            AddressBookProtos.MessageWrapper deserializedMessage = AddressBookProtos.MessageWrapper.parseFrom(message);
+            var messageContent = deserializedMessage.getPublication();
 
-        var messageContent = deserializedMessage.getPublication();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-        dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-        java.sql.Date date = null;
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+            dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
 
-        try {
-            var tmpDate = dateFormat.parse((String) messageContent.getDate());
-            date = new java.sql.Date(tmpDate.getTime());
-        } catch (Exception e) {
-            logger.error("Something went wrong: " + e);
-        }
-        var publication = new Publication(
+            Date tmpDate = dateFormat.parse(messageContent.getDate());
+            java.sql.Date date = new java.sql.Date(tmpDate.getTime());
+
+            var publication = new Publication(
                 messageContent.getCompany(),
                 messageContent.getValue(),
                 messageContent.getDrop(),
                 messageContent.getVariation(),
                 date
-        );
-        System.out.println("I found publication " + publication);
+            );
+
+        } catch (InvalidProtocolBufferException | ParseException e) {
+            throw new RuntimeException(e);
+        } catch (Exception e) {
+            logger.error("Something went wrong: {}", e.getMessage());
+        }
     }
 
-
     public void generateSubscriptions() {
-//        int companyEqualSign = 15;
-//        int numberOfSubscriptions = 25;
-//        int totalFields = 60;
-//        int nrCompany = 20;
-//        int nrValue = 15;
-//        int nrDrop = 10;
-//        int nrVariation = 10;
-//        int nrDate = 5;
+//        int companyEqualSign = 2;
+//        int numberOfSubscriptions = 5;
+//        int totalFields = 10;
+//        int nrCompany = 4;
+//        int nrValue = 3;
+//        int nrDrop = 3;
+//        int nrVariation = 0;
+//        int nrDate = 0;
 
-        int companyEqualSign = 3;
-        int numberOfSubscriptions = 3;
-        int totalFields = 3;
-        int nrCompany = 3;
-        int nrValue = 0;
-        int nrDrop = 0;
-        int nrVariation = 0;
+        int companyEqualSign = 2500;
+        int numberOfSubscriptions = 10_000;
+        int totalFields = 17_000;
+        int nrCompany = 8000;
+        int nrValue = 6000;
+        int nrDrop = 2000;
+        int nrVariation = 1000;
         int nrDate = 0;
-
 
         ArrayList<Subscription> subscriptions = DBGenerator.generateSubscriptionsList(companyEqualSign, numberOfSubscriptions, totalFields, nrCompany, nrValue, nrDrop, nrVariation, nrDate);
 
-        ArrayList<AddressBookProtos.MessageWrapper> protoMessages = new ArrayList<>();
         for (Subscription sub : subscriptions){
             AddressBookProtos.Subscription.Builder protoSubBuilder = AddressBookProtos.Subscription.newBuilder();
             if(sub.getVariation() != null){
@@ -110,46 +105,16 @@ public class Subscriber extends RabbitQueue {
                         .setSign(sub.getCompany().getFirst())
                         .setValue(sub.getCompany().getSecond()));
             }
-            AddressBookProtos.Subscription protoSub = protoSubBuilder.build();
 
-            protoMessages.add(AddressBookProtos.MessageWrapper.newBuilder()
+            var resultSub = AddressBookProtos.MessageWrapper.newBuilder()
                     .setType(SUBSCRIPTION_TYPE)
                     .setSource(name)
                     .setTimestamp(System.currentTimeMillis())
-                    .setSubscription(protoSub)
-                    .build());
-            //System.out.println(sub.getVariation());
-        }
-//
-        for (AddressBookProtos.MessageWrapper message: protoMessages){
-            byte[] serializedMessage = message.toByteArray();
-            broker.sendMessage(serializedMessage);
+                    .setSubscription(protoSubBuilder.build())
+                    .build()
+                    .toByteArray();
 
-//            AddressBookProtos.MessageWrapper deserializedMessage = null;
-//            try {
-//                deserializedMessage = AddressBookProtos.MessageWrapper.parseFrom(serializedMessage);
-//            } catch (InvalidProtocolBufferException e) {
-//                throw new RuntimeException(e);
-//            }
-
-//            System.out.println("Message company: " + deserializedMessage.getSubscription().getCompany());
-//            System.out.println("Company: " + message.getSubscription().getCompany());
-//            System.out.println("Date: " + message.getSubscription().getDate());
-//            System.out.println("Drop: " + message.getSubscription().getDrop());
-//            System.out.println("Value: " + message.getSubscription().getValue());
-//            System.out.println("Variation: " + message.getSubscription().getVariation());
-        }
-
-
-        for (Subscription sub : subscriptions) {
-            JSONObject jsonObject = new JSONObject()
-                    .put("type", SUBSCRIPTION_TYPE)
-                    .put("source", name)
-                    .put("message", sub.toJson().toString());
-
-            //System.out.println(jsonObject.toString());
-            //System.out.println(jsonObject.getString("source"));
-            //broker.sendMessage(jsonObject.toString());
+            broker.sendMessage(resultSub);
         }
     }
 }

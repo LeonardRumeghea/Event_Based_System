@@ -83,6 +83,18 @@ public class DBGenerator {
         return listOfSubscriptions;
     }
 
+    public static Publication generatePublication() {
+
+        Publication publication = new Publication();
+        publication.setCompany(Utils.generateRandomCompany());
+        publication.setValue(Utils.generateRandomFloat(MIN_VALUE, MAX_VALUE));
+        publication.setDrop(Utils.generateRandomFloat(MIN_DROP, MAX_DROP));
+        publication.setVariation(Utils.generateRandomFloat(MIN_VARIATION, MAX_VARIATION));
+        publication.setDate(Utils.generateRandomDate(NUMBER_OF_DAYS_AGO));
+
+        return publication;
+    }
+
     public static ArrayList<Publication> generatePublicationsList(int numberOfPublications) {
 
         ArrayList<Publication> listOfPublications = IntStream.range(0, numberOfPublications)

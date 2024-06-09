@@ -3,11 +3,10 @@ package ebs.communication;
 import com.rabbitmq.client.*;
 import ebs.communication.helpers.RabbitMqConfig;
 import lombok.Getter;
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.nio.charset.StandardCharsets;
+import java.io.IOException;
 
 
 public class RabbitQueue {
@@ -20,10 +19,14 @@ public class RabbitQueue {
     protected static final Logger logger = LoggerFactory.getLogger(RabbitQueue.class);
     private static final int MAX_RETRIES = 3;
 
-    public RabbitQueue(RabbitMqConfig rabbitMqConfig) {
+    public RabbitQueue(RabbitMqConfig rabbitMqConfig, boolean purgeTheQueue) {
         this.config = rabbitMqConfig;
         this.name = rabbitMqConfig.getQueueName();
         this.init();
+
+        if (purgeTheQueue) {
+            this.purge();
+        }
     }
 
     public void init() {
@@ -104,6 +107,14 @@ public class RabbitQueue {
 
     public void log(String direction, String from, String to, String message) {
         logger.info("[{}] {} -> {}: M: '{}'", direction, from, to, message);
+    }
+
+    public void purge() {
+        try {
+            channel.queuePurge(config.getQueueName());
+        } catch (IOException e) {
+            logger.info("Could not purge queue {}", config.getQueueName());
+        }
     }
 
     public void close() {

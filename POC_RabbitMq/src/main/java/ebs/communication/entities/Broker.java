@@ -3,21 +3,21 @@ package ebs.communication.entities;
 import com.google.protobuf.InvalidProtocolBufferException;
 import ebs.communication.RabbitQueue;
 import ebs.communication.helpers.Tools;
-import ebs.generator.entities.Pair;
 import ebs.generator.entities.Publication;
 import ebs.generator.entities.Subscription;
 import lombok.Getter;
 import org.example.protobuf.AddressBookProtos;
 import org.jetbrains.annotations.NotNull;
-import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
+import java.math.BigInteger;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static ebs.communication.entities.Constants.PUBLICATION_TYPE;
 import static ebs.communication.entities.Constants.SUBSCRIPTION_TYPE;
-import static ebs.communication.helpers.Tools.isPubMatchedBySub;
+import static ebs.communication.helpers.Tools.*;
 
 public class Broker extends RabbitQueue {
 
@@ -27,141 +27,114 @@ public class Broker extends RabbitQueue {
 
     private final Map<String, Set<Subscription>> routingTable;
 
-    public Broker(String brokerQueue, @NotNull List<String> brokerQueues, @NotNull List<String> subQueues) {
-        super(Tools.getConfigFor(brokerQueue));
+    private final Map<Subscription, LinkedHashSet<String>> filterToSources;
+
+    public Broker(String brokerQueue, @NotNull List<String> brokerQueues, @NotNull List<String> subQueues, boolean purgeTheQueue) {
+        super(Tools.getConfigFor(brokerQueue), purgeTheQueue);
         brokers = brokerQueues.stream()
-                .map(e -> new RabbitQueue(Tools.getConfigFor(e)))
+                .map(e -> new RabbitQueue(Tools.getConfigFor(e), true))
                 .collect(Collectors.toList());
 
         subscribers = subQueues.stream()
-                .map(e -> new RabbitQueue(Tools.getConfigFor(e)))
+                .map(e -> new RabbitQueue(Tools.getConfigFor(e), true))
                 .collect(Collectors.toList());
 
         routingTable = new HashMap<>();
-        for (var sub : subscribers) {
-            routingTable.put(sub.getName(), new HashSet<>());
-        }
+        filterToSources = new HashMap<>();
     }
 
     //    This method is called when a message is received by the broker. It forwards the message to all other brokers and subs
     @Override
     public void callback(byte[] message) {
-
-        AddressBookProtos.MessageWrapper deserializedMessage = null;
         try {
-            deserializedMessage = AddressBookProtos.MessageWrapper.parseFrom(message);
+            AddressBookProtos.MessageWrapper deserializedMessage = AddressBookProtos.MessageWrapper.parseFrom(message);
+            String source = deserializedMessage.getSource();
+            String type = deserializedMessage.getType();
+
+            AddressBookProtos.MessageWrapper updatedMessage = deserializedMessage
+                    .toBuilder()
+                    .setSource(getName())
+                    .build();
+
+            if (type.equals(SUBSCRIPTION_TYPE)) {
+                Subscription subscription = getSubFromContent(deserializedMessage.getSubscription());
+                subscriptionTypeHandler(subscription, source, updatedMessage);
+            }
+            if (type.equals(PUBLICATION_TYPE)) {
+                Publication publication = getPubFromContent(deserializedMessage.getPublication());
+                publicationTypeHandler(publication, source, updatedMessage);
+            }
+
+            var value = brokerTimestamps.get(getName()).incrementAndGet();
+            value %= BigInteger.valueOf(Long.MAX_VALUE).longValue();
+            brokerTimestamps.put(getName(), new AtomicLong(value));
+
         } catch (InvalidProtocolBufferException e) {
             throw new RuntimeException(e);
         }
+    }
 
-        String source = deserializedMessage.getSource();
-        String type = deserializedMessage.getType();
+    private void publicationTypeHandler(Publication publication, String source, AddressBookProtos.MessageWrapper updatedMessage) {
 
-        if (type.equals(SUBSCRIPTION_TYPE)) {
-            var messageContent = deserializedMessage.getSubscription();
+        List<RabbitQueue> allQueues = Stream.concat(brokers.stream(), subscribers.stream()).toList();
 
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-            dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+        for (RabbitQueue entity : allQueues) {
 
-            java.sql.Date date = null;
-            Pair<String, java.sql.Date> pair = null;
-            try {
-                var dateString = (String) messageContent.getDate().getValue();
-                if (dateString.compareTo("") != 0) {
-                    var tmpDate = dateFormat.parse(dateString);
-                    date = new java.sql.Date(tmpDate.getTime());
-                    pair = new Pair<>(messageContent.getDate().getSign(), date);
+            if (entity.getName().equals(source)) continue; // Do not send the message back to the source
+
+            if (!routingTable.containsKey(entity.getName())) {
+                continue;
+            }
+
+            var subscriptions = routingTable.get(entity.getName());
+
+            for (var subscription : subscriptions) {
+                if (isPubMatchedBySub(publication, subscription)) {
+                    entity.sendMessage(updatedMessage.toByteArray());
+                    logger.info("Matched publication with subscription: \n\t{}\n\t{}.\nSent to {}\n", publication, subscription, entity.getName());
+                    break;
                 }
-            } catch (Exception e) {
-                logger.error("Something went wrong: " + e);
             }
+        }
+    }
 
-            Pair<String, String> companyPair = null;
-            Pair<String, Float> valuePair = null;
-            Pair<String, Float> dropPair = null;
-            Pair<String, Float> variationPair = null;
+    private void subscriptionTypeHandler (Subscription subscription, String source, AddressBookProtos.MessageWrapper updatedMessage) {
 
-            if ((messageContent.getCompany().getSign().compareTo("")) != 0) {
-                companyPair = new Pair<>(messageContent.getCompany().getSign(), messageContent.getCompany().getValue());
-            }
-
-
-            if ((messageContent.getValue().getSign().compareTo("")) != 0) {
-                valuePair = new Pair<>(messageContent.getValue().getSign(), messageContent.getValue().getValue());
-            }
-
-            if ((messageContent.getDrop().getSign().compareTo("")) != 0) {
-                dropPair = new Pair<>(messageContent.getDrop().getSign(), messageContent.getDrop().getValue());
-            }
-
-            if ((messageContent.getVariation().getSign().compareTo("")) != 0) {
-                variationPair = new Pair<>(messageContent.getVariation().getSign(), messageContent.getVariation().getValue());
-            }
-            Subscription subscription = new Subscription(
-                    companyPair,
-                    valuePair,
-                    dropPair,
-                    variationPair,
-                    pair
-            );
-
-            if (routingTable.containsKey(source)) {
-                routingTable.get(source).add(subscription);
-            } else {
-                routingTable.put(source, new HashSet<>(Set.of(subscription)));
-            }
-
-//            logger.info("Received subscription {}.  New routing table: {}", subscription, routingTable);
+        if (routingTable.containsKey(source)) {
+            routingTable.get(source).add(subscription);
+        } else {
+            routingTable.put(source, new HashSet<>(Set.of(subscription)));
         }
 
+        if (filterToSources.containsKey(subscription) && filterToSources.get(subscription).size() == 2) {
+//            logger.info("[{}]\n\tRouting table: {}\n\tFilter to sources: {}\n", getName(), routingTable, filterToSources);
 
-        AddressBookProtos.MessageWrapper updatedMessage = deserializedMessage.toBuilder()
-                .setSource(getName())
-                .build();
+            return;
+        }
 
+        if (filterToSources.containsKey(subscription) && filterToSources.get(subscription).size() == 1) {
+            var initialSource = filterToSources.get(subscription).getFirst();
+            filterToSources.get(subscription).addLast(source);
+
+            brokers
+                .stream()
+                .filter(e -> e.getName().equals(initialSource))
+                .findFirst()
+                .ifPresent(sourceBroker -> sourceBroker.sendMessage(updatedMessage.toByteArray()));
+
+//            logger.info("[{}]\n\tRouting table: {}\n\tFilter to sources: {}\n", getName(), routingTable, filterToSources);
+
+            return;
+        }
+
+        filterToSources.put(subscription, new LinkedHashSet<>(Set.of(source)));
 
         for (var broker : brokers) {
             if (broker.getName().equals(source)) continue; // Do not send the message back to the source
             broker.sendMessage(updatedMessage.toByteArray());
         }
 
-        if (type.equals(PUBLICATION_TYPE)) {
-            for (var subscriber : subscribers) {
-
-                if (!routingTable.containsKey(subscriber.getName())) {
-                    continue;
-                }
-
-                var subscriptions = routingTable.get(subscriber.getName());
-                var messageContent = deserializedMessage.getPublication();
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-                dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-                java.sql.Date date = null;
-
-                try {
-                    var tmpDate = dateFormat.parse((String) messageContent.getDate());
-                    date = new java.sql.Date(tmpDate.getTime());
-                } catch (Exception e) {
-                    logger.error("Something went wrong: " + e);
-                }
-                var publication = new Publication(
-                        messageContent.getCompany(),
-                        messageContent.getValue(),
-                        messageContent.getDrop(),
-                        messageContent.getVariation(),
-                        date
-                );
-
-
-                for (var subscription : subscriptions) {
-                    if (isPubMatchedBySub(publication, subscription)) {
-                    subscriber.sendMessage(updatedMessage.toByteArray());
-                    logger.info("Matched publication {} with subscription {}. Sent to {}", publication, subscription, subscriber.getName());
-                    break;
-                    }
-                }
-            }
-        }
+//        logger.info("[{}]\n\tRouting table: {}\n\tFilter to sources: {}\n", getName(), routingTable, filterToSources);
     }
 
     @Override

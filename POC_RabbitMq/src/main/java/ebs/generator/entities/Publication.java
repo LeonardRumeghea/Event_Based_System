@@ -41,6 +41,6 @@ public class Publication {
 
     @Override
     public String toString() {
-        return toJson().toString(2);
+        return toJson().toString();
     }
 }

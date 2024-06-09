@@ -3,6 +3,7 @@ package ebs;
 import ebs.communication.RabbitQueue;
 import ebs.communication.entities.Broker;
 import ebs.communication.entities.Publisher;
+import ebs.communication.entities.Rabbitstrator;
 import ebs.communication.entities.Subscriber;
 import ebs.communication.helpers.QueueNames;
 import org.jetbrains.annotations.NotNull;
@@ -14,22 +15,20 @@ import java.util.stream.Stream;
 
 import static ebs.communication.entities.Constants.NUMBER_OF_PUBLISHERS;
 import static ebs.communication.entities.Constants.ROOT_QUEUE_NAME;
+import static java.lang.Math.abs;
 
 public class Main {
 
     public static void main(String[] args) {
 
-
-//        String a = "32.23";
-//        String b = "52.43";
-
-//        System.out.println(Double.parseDouble(a) - Double.parseDouble(b) > 0);
-
-
         var namesFetcher = new QueueNames();
         namesFetcher.fetchQueues();
         var brokers = namesFetcher.getBrokers();
         var subs = namesFetcher.getSubs();
+
+        Rabbitstrator rabbitstrator = new Rabbitstrator(brokers);
+
+        rabbitstrator.start();
 
 //        Create the brokers and start them
         var brokersList = getBrokers(brokers, subs);
@@ -67,42 +66,41 @@ public class Main {
 
         System.out.println("[!] Subscriptions generated");
 
-//        TODO: Find a better way to wait for routing table to be generated
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
 //       Create the publishers and start them
-        startPublishers();
+//        startPublishers();
     }
 
     private static @Unmodifiable List<Broker> getBrokers(@NotNull List<String> brokers, @NotNull List<String> subs) {
-        var splitIndex = new Random().nextInt() % 2 + 1;
+
+        var splitIndex = (abs(new Random().nextInt()) % 2) + 1;
+
         return List.of(
 //                Route broker
                 new Broker(
                         brokers.get(0),  // Broker name
                         Arrays.asList(brokers.get(1), brokers.get(2)),   // Broker neighbours
-                        new ArrayList<>()  // Subscribers
+                        new ArrayList<>(),  // Subscribers
+                        true  // Purge the queue
                 ),
 //                Up broker
                 new Broker(
                         brokers.get(1),  // Broker name
                         Collections.singletonList(brokers.get(0)),  // Broker neighbours
-                        new ArrayList<>(subs.subList(0, splitIndex))  // Subscribers
+                        new ArrayList<>(subs.subList(0, splitIndex)),  // Subscribers
+                        true  // Purge the queue
+
                 ),
 //                Down broker
                 new Broker(
                         brokers.get(2),  // Broker name
                         Collections.singletonList(brokers.get(0)), // Broker neighbours
-                        new ArrayList<>(subs.subList(splitIndex, 3)) // Subscribers
+                        new ArrayList<>(subs.subList(splitIndex, 3)), // Subscribers
+                        true  // Purge the queue
                 )
         );
     }
 
-    private static void startPublishers() {
+    public static void startPublishers() {
         List<Thread> tasks = Stream.generate(() -> new Publisher(ROOT_QUEUE_NAME))
                 .limit(NUMBER_OF_PUBLISHERS)
                 .peek(Thread::start)
