@@ -17,17 +17,23 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 import static ebs.communication.entities.Constants.SUBSCRIPTION_TYPE;
+import static ebs.communication.helpers.Tools.averageLatency;
+import static ebs.communication.helpers.Tools.receivedPubs;
 
 public class Subscriber extends RabbitQueue {
 
     private final RabbitQueue broker;
     @Getter
     private final String name;
+    private double latency;
+    private int publicationsNumber;
 
     public Subscriber(String name, String brokerName) {
         super(Tools.getConfigFor(name), true);
         this.broker = new RabbitQueue(Tools.getConfigFor(brokerName), true);
         this.name = name;
+        this.latency=0;
+        this.publicationsNumber=0;
     }
 
     @Override
@@ -42,13 +48,22 @@ public class Subscriber extends RabbitQueue {
             Date tmpDate = dateFormat.parse(messageContent.getDate());
             java.sql.Date date = new java.sql.Date(tmpDate.getTime());
 
-            var publication = new Publication(
-                messageContent.getCompany(),
-                messageContent.getValue(),
-                messageContent.getDrop(),
-                messageContent.getVariation(),
-                date
-            );
+            this.publicationsNumber ++;
+            this.latency = this.latency + ((System.currentTimeMillis()-deserializedMessage.getTimestamp() - this.latency) / this.publicationsNumber);
+
+            receivedPubs.put(getName(), this.publicationsNumber);
+            averageLatency.put(getName(), this.latency);
+
+            //subLatencies.get(getName()).add(System.currentTimeMillis()-deserializedMessage.getTimestamp());
+            //System.out.println(deserializedMessage.getTimestamp());
+            //System.out.println(System.currentTimeMillis());
+//            var publication = new Publication(
+//                messageContent.getCompany(),
+//                messageContent.getValue(),
+//                messageContent.getDrop(),
+//                messageContent.getVariation(),
+//                date
+//            );
 
         } catch (InvalidProtocolBufferException | ParseException e) {
             throw new RuntimeException(e);
@@ -60,19 +75,19 @@ public class Subscriber extends RabbitQueue {
     public void generateSubscriptions() {
 //        int companyEqualSign = 2;
 //        int numberOfSubscriptions = 5;
-//        int totalFields = 10;
+//        int totalFields = 13;
 //        int nrCompany = 4;
 //        int nrValue = 3;
 //        int nrDrop = 3;
-//        int nrVariation = 0;
+//        int nrVariation = 3;
 //        int nrDate = 0;
 
-        int companyEqualSign = 2500;
-        int numberOfSubscriptions = 10_000;
-        int totalFields = 17_000;
-        int nrCompany = 8000;
-        int nrValue = 6000;
-        int nrDrop = 2000;
+        int companyEqualSign = 750;
+        int numberOfSubscriptions = 3334;
+        int totalFields = 7_000;
+        int nrCompany = 3000;
+        int nrValue = 2000;
+        int nrDrop = 1000;
         int nrVariation = 1000;
         int nrDate = 0;
 

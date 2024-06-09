@@ -47,7 +47,7 @@ public class Rabbitstrator extends Thread {
                 }
 
                 if (oldTimestamps.stream().distinct().count() != 1) {
-                    System.out.println("[Rabbitstrator] " + queue + " is broken 😟. Trying to restart..");
+                    //System.out.println("[Rabbitstrator] " + queue + " is broken 😟. Trying to restart..");
 
                     resetBroker(queue);
                     break;

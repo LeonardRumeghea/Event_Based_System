@@ -29,8 +29,11 @@ public class Broker extends RabbitQueue {
 
     private final Map<Subscription, LinkedHashSet<String>> filterToSources;
 
+    private int publicationNumber;
+
     public Broker(String brokerQueue, @NotNull List<String> brokerQueues, @NotNull List<String> subQueues, boolean purgeTheQueue) {
         super(Tools.getConfigFor(brokerQueue), purgeTheQueue);
+        this.publicationNumber = 0;
         brokers = brokerQueues.stream()
                 .map(e -> new RabbitQueue(Tools.getConfigFor(e), true))
                 .collect(Collectors.toList());
@@ -77,6 +80,8 @@ public class Broker extends RabbitQueue {
     private void publicationTypeHandler(Publication publication, String source, AddressBookProtos.MessageWrapper updatedMessage) {
 
         List<RabbitQueue> allQueues = Stream.concat(brokers.stream(), subscribers.stream()).toList();
+        publicationNumber++;
+        brokerPubs.put(getName(), publicationNumber);
 
         for (RabbitQueue entity : allQueues) {
 
@@ -91,7 +96,7 @@ public class Broker extends RabbitQueue {
             for (var subscription : subscriptions) {
                 if (isPubMatchedBySub(publication, subscription)) {
                     entity.sendMessage(updatedMessage.toByteArray());
-                    logger.info("Matched publication with subscription: \n\t{}\n\t{}.\nSent to {}\n", publication, subscription, entity.getName());
+                    //logger.info("Matched publication with subscription: \n\t{}\n\t{}.\nSent to {}\n", publication, subscription, entity.getName());
                     break;
                 }
             }

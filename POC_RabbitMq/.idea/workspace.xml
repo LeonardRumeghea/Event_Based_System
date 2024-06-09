@@ -5,19 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ecc2970c-1b41-4a6d-b9ef-b43179e7da35" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ebs/communication/entities/Rabbitstrator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ebs/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ebs/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ebs/communication/RabbitQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ebs/communication/RabbitQueue.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ebs/communication/entities/Broker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ebs/communication/entities/Broker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ebs/communication/entities/Publisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ebs/communication/entities/Publisher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ebs/communication/entities/Rabbitstrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ebs/communication/entities/Rabbitstrator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ebs/communication/entities/Subscriber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ebs/communication/entities/Subscriber.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ebs/communication/helpers/Tools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ebs/communication/helpers/Tools.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ebs/generator/DBGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ebs/generator/DBGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ebs/generator/entities/Publication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ebs/generator/entities/Publication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ebs/generator/entities/Subscription.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ebs/generator/entities/Subscription.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/protobuf/address.proto" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/protobuf/address.proto" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +46,9 @@
   &quot;associatedIndex&quot;: 0
 }</component>
   <component name="ProjectId" id="2hZLB8ZqbmtzfMfQwrGjuYNS6TE" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -58,9 +56,11 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "#2 on Protobuf",
+    "git-widget-placeholder": "Protobuf",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/nicol/intellij projects/maven-protobuf-master",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -93,8 +93,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
-        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+        <option value="jdk-22-openjdk-22-3183f394aec4-bad0321e" />
       </set>
     </attachedChunks>
   </component>

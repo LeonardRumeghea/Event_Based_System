@@ -10,14 +10,20 @@ import org.jetbrains.annotations.NotNull;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.atomic.AtomicLongArray;
 
 import static ebs.communication.entities.Constants.*;
 
 public class Tools {
 
     public static Map<String, AtomicLong> brokerTimestamps;
-
+    //public static ConcurrentHashMap<String, CopyOnWriteArrayList<Long>> subLatencies;
+    public static ConcurrentHashMap<String, Integer> brokerPubs;
+    public static ConcurrentHashMap<String, Double> averageLatency;
+    public static ConcurrentHashMap<String, Integer> receivedPubs;
     public static RabbitMqConfig getConfigFor(String name) {
         return new RabbitMqConfigBuilder()
                 .username(USERNAME)
@@ -44,6 +50,27 @@ public class Tools {
         }
 
         return null;
+    }
+
+    public static void initReceivedPubs(List<String> subs) {
+        receivedPubs = new ConcurrentHashMap<>();
+        for (String sub : subs) {
+            receivedPubs.putIfAbsent(sub, 0);
+        }
+    }
+
+    public static void initAverageLatency(List<String> subs) {
+        averageLatency = new ConcurrentHashMap<>();
+        for (String sub : subs) {
+            averageLatency.putIfAbsent(sub, (double) 0);
+        }
+    }
+
+    public static void initBrokerPubs(List<String> brokers) {
+        brokerPubs = new ConcurrentHashMap<>();
+        for (String broker : brokers) {
+            brokerPubs.putIfAbsent(broker, 0);
+        }
     }
 
     public static void initBrokersTimestamps(List<String> brokers) {

@@ -21,7 +21,8 @@ public class Publisher extends Thread  {
     public void run() {
 
 //        var executionTime = 3 * 60 * 10_000;  // ms
-        var executionTime =  10 * 10_000;  // ms
+        // 3 minutes for the two publishers to finish publishing
+        var executionTime =  20 * 10_000;  // ms
 
         Date stopDate = new Date(System.currentTimeMillis() + executionTime);
 

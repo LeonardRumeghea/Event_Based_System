@@ -1,10 +1,7 @@
 package ebs;
 
 import ebs.communication.RabbitQueue;
-import ebs.communication.entities.Broker;
-import ebs.communication.entities.Publisher;
-import ebs.communication.entities.Rabbitstrator;
-import ebs.communication.entities.Subscriber;
+import ebs.communication.entities.*;
 import ebs.communication.helpers.QueueNames;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
@@ -27,8 +24,12 @@ public class Main {
         var subs = namesFetcher.getSubs();
 
         Rabbitstrator rabbitstrator = new Rabbitstrator(brokers);
+        SubWatcher subWatcher = new SubWatcher(subs);
+        BrokerWatcher brokerWatcher = new BrokerWatcher(brokers);
 
         rabbitstrator.start();
+        subWatcher.start();
+        brokerWatcher.start();
 
 //        Create the brokers and start them
         var brokersList = getBrokers(brokers, subs);
