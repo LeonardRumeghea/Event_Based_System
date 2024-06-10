@@ -68,9 +68,6 @@ public class Main {
         );
 
         System.out.println("[!] Subscriptions generated");
-
-//       Create the publishers and start them
-//        startPublishers();
     }
 
     private static @Unmodifiable List<Broker> getBrokers(@NotNull List<String> brokers, @NotNull List<String> subs) {

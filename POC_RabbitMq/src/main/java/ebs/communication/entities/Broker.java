@@ -9,15 +9,15 @@ import lombok.Getter;
 import org.example.protobuf.AddressBookProtos;
 import org.jetbrains.annotations.NotNull;
 
-import java.math.BigInteger;
 import java.util.*;
-import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static ebs.communication.entities.Constants.PUBLICATION_TYPE;
 import static ebs.communication.entities.Constants.SUBSCRIPTION_TYPE;
 import static ebs.communication.helpers.Tools.*;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Broker extends RabbitQueue {
 
@@ -68,9 +68,8 @@ public class Broker extends RabbitQueue {
                 publicationTypeHandler(publication, source, updatedMessage);
             }
 
-            var value = brokerTimestamps.get(getName()).incrementAndGet();
-            value %= BigInteger.valueOf(Long.MAX_VALUE).longValue();
-            brokerTimestamps.put(getName(), new AtomicLong(value));
+            var value = (brokerTimestamps.get(getName()) + 1) % Long.MAX_VALUE;
+            brokerTimestamps.put(getName(), value);
 
         } catch (InvalidProtocolBufferException e) {
             throw new RuntimeException(e);
@@ -120,6 +119,10 @@ public class Broker extends RabbitQueue {
         if (filterToSources.containsKey(subscription) && filterToSources.get(subscription).size() == 1) {
             var initialSource = filterToSources.get(subscription).getFirst();
             filterToSources.get(subscription).addLast(source);
+
+            if (initialSource.equals(source)) {
+                return;
+            }
 
             brokers
                 .stream()

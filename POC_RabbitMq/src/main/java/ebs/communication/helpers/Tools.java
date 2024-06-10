@@ -11,16 +11,12 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.atomic.AtomicLong;
-import java.util.concurrent.atomic.AtomicLongArray;
 
 import static ebs.communication.entities.Constants.*;
 
 public class Tools {
 
-    public static Map<String, AtomicLong> brokerTimestamps;
-    //public static ConcurrentHashMap<String, CopyOnWriteArrayList<Long>> subLatencies;
+    public static ConcurrentHashMap<String, Long> brokerTimestamps;
     public static ConcurrentHashMap<String, Integer> brokerPubs;
     public static ConcurrentHashMap<String, Double> averageLatency;
     public static ConcurrentHashMap<String, Integer> receivedPubs;
@@ -74,9 +70,9 @@ public class Tools {
     }
 
     public static void initBrokersTimestamps(List<String> brokers) {
-        brokerTimestamps = new HashMap<>();
+        brokerTimestamps = new ConcurrentHashMap<>();
         for (var broker : brokers) {
-            brokerTimestamps.put(broker, new AtomicLong(0));
+            brokerTimestamps.put(broker, 0L);
         }
     }
 
@@ -123,7 +119,7 @@ public class Tools {
             case "<" -> value1.compareTo(value2) < 0;
             case "<=" -> value1.compareTo(value2) <= 0;
             case "=" -> value1.compareTo(value2) == 0;
-            case "!" -> value1.compareTo(value2) != 0;
+            case "!=" -> value1.compareTo(value2) != 0;
             case ">=" -> value1.compareTo(value2) >= 0;
             case ">" -> value1.compareTo(value2) > 0;
             default -> false;
@@ -135,7 +131,7 @@ public class Tools {
             case "<" -> value1 < value2;
             case "<=" -> value1 <= value2;
             case "=" -> value1.compareTo(value2) == 0;
-            case "!" -> value1.compareTo(value2) != 0;
+            case "!=" -> value1.compareTo(value2) != 0;
             case ">=" -> value1 >= value2;
             case ">" -> value1 > value2;
             default -> false;
@@ -147,7 +143,7 @@ public class Tools {
             case "<" -> value1.compareTo(value2) < 0;
             case "<=" -> value1.compareTo(value2) <= 0;
             case "=" -> value1.compareTo(value2) == 0;
-            case "!" -> value1.compareTo(value2) != 0;
+            case "!=" -> value1.compareTo(value2) != 0;
             case ">=" -> value1.compareTo(value2) >= 0;
             case ">" -> value1.compareTo(value2) > 0;
             default -> false;

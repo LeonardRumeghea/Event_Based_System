@@ -19,4 +19,13 @@ public class Constants {
     public static final int NUMBER_OF_SUBSCRIBERS = 3;
     public static final int NUMBER_OF_PUBLISHERS = 2;
     public static final int NUMBER_OF_BROKERS = 3;
+
+    public static int NUMBER_OF_SUBSCRIPTIONS = 3334;
+    public static int NUMBER_OF_COMPANIES = 3334;
+    public static int NUMBER_OF_VALUES = 3334;
+    public static int NUMBER_OF_DROPS = 3334;
+    public static int NUMBER_OF_VARIATIONS = 3334;
+    public static int NUMBER_OF_DATES= 3334;
+    public static int NUMBER_OF_EQUAL_SIGNS = 3334; //834; //3334;
+
 }

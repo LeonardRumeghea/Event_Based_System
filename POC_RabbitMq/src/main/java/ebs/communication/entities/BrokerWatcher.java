@@ -1,5 +1,6 @@
 package ebs.communication.entities;
 
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,14 +41,17 @@ public class BrokerWatcher extends Thread{
                 int oldCount = oldCounters.get(broker);
 
                 oldCounters.put(broker, newCount);
-                if(newCount!=oldCount){
+                if(newCount != oldCount){
                     ready=false;
                 }
             }
             if (ready){
-                //System.out.println("[BrokerWatcher] Finished work for brokers");
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
+                String time = dtf.format(java.time.LocalTime.now());
+                String date = java.time.LocalDate.now().toString();
+
                 for (String broker:brokers){
-                    System.out.println("[BrokerWatcher] " + broker +" publications received: "+ brokerPubs.get(broker));
+                    System.out.println(date + " " + time + " [BrokerWatcher] " + broker +" publications received: "+ brokerPubs.get(broker));
                 }
                 break;
             }

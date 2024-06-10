@@ -1,4 +1,5 @@
 package ebs.communication.entities;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,12 +61,13 @@ public class AccuracyWatcher extends Thread{
                     subsReady = false;
                 }
             }
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
+            String time = dtf.format(java.time.LocalTime.now());
+            String date = java.time.LocalDate.now().toString();
             if (subsReady && brokersReady){
-                //System.out.println("\n[AccuracyWatcher] Finished work");
-
                 for (String sub: subs){
-                    double accuracy = (double) receivedPubs.get(sub) /brokerPubs.get(brokers.getFirst());
-                    System.out.println("[AccuracyWatcher] " + sub +" matching rate: " + accuracy * 100);
+                    double accuracy = (double) receivedPubs.get(sub) / brokerPubs.get(brokers.getFirst());
+                    System.out.printf(date + " " + time + " [AccuracyWatcher] %s matching rate: %.2f%%\n", sub, accuracy * 100);
                 }
                 break;
             }

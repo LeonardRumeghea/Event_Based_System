@@ -6,6 +6,7 @@ import ebs.generator.DBGenerator;
 import org.example.protobuf.AddressBookProtos;
 
 import java.sql.Date;
+import java.time.format.DateTimeFormatter;
 
 import static ebs.communication.entities.Constants.PUBLICATION_TYPE;
 
@@ -20,9 +21,9 @@ public class Publisher extends Thread  {
     @Override
     public void run() {
 
-//        var executionTime = 3 * 60 * 10_000;  // ms
+//        var executionTime = 3 * 60 * 1_000;  // ms
         // 3 minutes for the two publishers to finish publishing
-        var executionTime =  20 * 10_000;  // ms
+        var executionTime = 3 * 60 * 1_000;  // ms
 
         Date stopDate = new Date(System.currentTimeMillis() + executionTime);
 
@@ -47,6 +48,10 @@ public class Publisher extends Thread  {
             broker.sendMessage(resultPub);
         }
 
-        System.out.println("Publisher finished publishing messages.");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String time = dtf.format(java.time.LocalTime.now());
+        String date = java.time.LocalDate.now().toString();
+
+        System.out.println(date + " " + time + " [Publisher] I finished publishing messages.");
     }
 }

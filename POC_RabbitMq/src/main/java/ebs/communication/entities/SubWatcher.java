@@ -1,5 +1,6 @@
 package ebs.communication.entities;
 
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,9 +55,12 @@ public class SubWatcher extends Thread {
             }
 
             if (ready){
-                //System.out.println("[SubWatcher] Finished work");
                 for (String sub: subs){
-                    System.out.println("[SubWatcher] " + sub +" publications received: "+ oldReceivedPubs.get(sub) + " with an average latency: " + oldLatencies.get(sub));
+                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
+                    String time = dtf.format(java.time.LocalTime.now());
+                    String date = java.time.LocalDate.now().toString();
+
+                    System.out.printf(date + " " + time + " [SubWatcher] %s publications received: %d with an average latency: %.2f ms\n", sub, oldReceivedPubs.get(sub), oldLatencies.get(sub));
                 }
                 break;
             }
