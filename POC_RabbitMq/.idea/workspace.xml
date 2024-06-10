@@ -5,14 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ecc2970c-1b41-4a6d-b9ef-b43179e7da35" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ebs/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ebs/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ebs/communication/entities/Broker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ebs/communication/entities/Broker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ebs/communication/entities/Publisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ebs/communication/entities/Publisher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ebs/communication/entities/Rabbitstrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ebs/communication/entities/Rabbitstrator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ebs/communication/entities/Subscriber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ebs/communication/entities/Subscriber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ebs/communication/helpers/Tools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ebs/communication/helpers/Tools.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ebs/generator/entities/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ebs/generator/entities/Constants.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,23 +49,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Protobuf",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/nicol/intellij projects/maven-protobuf-master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "configurable.group.editor",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Protobuf&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/nicol/intellij projects/maven-protobuf-master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.editor&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ebs.Main" />

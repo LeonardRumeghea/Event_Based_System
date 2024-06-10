@@ -45,7 +45,7 @@ public class BrokerWatcher extends Thread{
                 }
             }
             if (ready){
-                System.out.println("[BrokerWatcher] Finished work for brokers");
+                //System.out.println("[BrokerWatcher] Finished work for brokers");
                 for (String broker:brokers){
                     System.out.println("[BrokerWatcher] " + broker +" publications received: "+ brokerPubs.get(broker));
                 }

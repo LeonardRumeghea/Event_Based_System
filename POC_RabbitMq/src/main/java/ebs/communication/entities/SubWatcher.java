@@ -54,7 +54,7 @@ public class SubWatcher extends Thread {
             }
 
             if (ready){
-                System.out.println("[SubWatcher] Finished work");
+                //System.out.println("[SubWatcher] Finished work");
                 for (String sub: subs){
                     System.out.println("[SubWatcher] " + sub +" publications received: "+ oldReceivedPubs.get(sub) + " with an average latency: " + oldLatencies.get(sub));
                 }

@@ -31,6 +31,8 @@ public class Main {
         subWatcher.start();
         brokerWatcher.start();
 
+        AccuracyWatcher accuracyWatcher = new AccuracyWatcher(subs,brokers);
+        accuracyWatcher.start();
 //        Create the brokers and start them
         var brokersList = getBrokers(brokers, subs);
         brokersList.forEach(RabbitQueue::receiveMessage);

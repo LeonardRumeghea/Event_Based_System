@@ -73,23 +73,23 @@ public class Subscriber extends RabbitQueue {
     }
 
     public void generateSubscriptions() {
-//        int companyEqualSign = 2;
-//        int numberOfSubscriptions = 5;
-//        int totalFields = 13;
-//        int nrCompany = 4;
-//        int nrValue = 3;
-//        int nrDrop = 3;
-//        int nrVariation = 3;
-//        int nrDate = 0;
-
-        int companyEqualSign = 750;
-        int numberOfSubscriptions = 3334;
-        int totalFields = 7_000;
-        int nrCompany = 3000;
-        int nrValue = 2000;
-        int nrDrop = 1000;
-        int nrVariation = 1000;
+        int companyEqualSign = 2;
+        int numberOfSubscriptions = 5;
+        int totalFields = 13;
+        int nrCompany = 4;
+        int nrValue = 3;
+        int nrDrop = 3;
+        int nrVariation = 3;
         int nrDate = 0;
+
+//        int companyEqualSign = 750;
+//        int numberOfSubscriptions = 3334;
+//        int totalFields = 7_000;
+//        int nrCompany = 3000;
+//        int nrValue = 2000;
+//        int nrDrop = 1000;
+//        int nrVariation = 1000;
+//        int nrDate = 0;
 
         ArrayList<Subscription> subscriptions = DBGenerator.generateSubscriptionsList(companyEqualSign, numberOfSubscriptions, totalFields, nrCompany, nrValue, nrDrop, nrVariation, nrDate);
 
