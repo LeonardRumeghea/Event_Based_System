@@ -26,6 +26,6 @@ public class Constants {
     public static int NUMBER_OF_DROPS = 3334;
     public static int NUMBER_OF_VARIATIONS = 3334;
     public static int NUMBER_OF_DATES= 3334;
-    public static int NUMBER_OF_EQUAL_SIGNS = 3334; //834; //3334;
+    public static int NUMBER_OF_EQUAL_SIGNS = 0; //834; //3334;
 
 }

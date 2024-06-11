@@ -1,4 +1,4 @@
-package ebs.communication.entities;
+package ebs.communication.watchers;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
@@ -34,7 +34,7 @@ public class AccuracyWatcher extends Thread{
             boolean brokersReady = true;
             boolean subsReady = true;
             try {
-                Thread.sleep(4000);
+                Thread.sleep(6000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

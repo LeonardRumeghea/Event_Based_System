@@ -12,6 +12,7 @@ import java.io.IOException;
 public class RabbitQueue {
     @Getter
     private final String name;
+    @Getter
     private final RabbitMqConfig config;
     private Connection connection;
     private Channel channel;

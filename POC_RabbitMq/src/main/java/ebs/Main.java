@@ -3,6 +3,10 @@ package ebs;
 import ebs.communication.RabbitQueue;
 import ebs.communication.entities.*;
 import ebs.communication.helpers.QueueNames;
+import ebs.communication.watchers.AccuracyWatcher;
+import ebs.communication.watchers.BrokerWatcher;
+import ebs.communication.watchers.Rabbitstrator;
+import ebs.communication.watchers.SubWatcher;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Unmodifiable;
 
@@ -12,9 +16,12 @@ import java.util.stream.Stream;
 
 import static ebs.communication.entities.Constants.NUMBER_OF_PUBLISHERS;
 import static ebs.communication.entities.Constants.ROOT_QUEUE_NAME;
+import static ebs.communication.helpers.Tools.brokersBackup;
 import static java.lang.Math.abs;
 
 public class Main {
+
+    public static List<Broker> brokersList;
 
     public static void main(String[] args) {
 
@@ -34,7 +41,7 @@ public class Main {
         AccuracyWatcher accuracyWatcher = new AccuracyWatcher(subs,brokers);
         accuracyWatcher.start();
 //        Create the brokers and start them
-        var brokersList = getBrokers(brokers, subs);
+        brokersList = getBrokers(brokers, subs);
         brokersList.forEach(RabbitQueue::receiveMessage);
 
 //        Create the subscribers and start them
@@ -80,14 +87,16 @@ public class Main {
                         brokers.get(0),  // Broker name
                         Arrays.asList(brokers.get(1), brokers.get(2)),   // Broker neighbours
                         new ArrayList<>(),  // Subscribers
-                        true  // Purge the queue
+                        true,  // Purge the queue
+                        999_999_999  // Sleep over time
                 ),
 //                Up broker
                 new Broker(
                         brokers.get(1),  // Broker name
                         Collections.singletonList(brokers.get(0)),  // Broker neighbours
                         new ArrayList<>(subs.subList(0, splitIndex)),  // Subscribers
-                        true  // Purge the queue
+                        true,  // Purge the queue
+                        20_000  // Sleep over time
 
                 ),
 //                Down broker
@@ -95,7 +104,8 @@ public class Main {
                         brokers.get(2),  // Broker name
                         Collections.singletonList(brokers.get(0)), // Broker neighbours
                         new ArrayList<>(subs.subList(splitIndex, 3)), // Subscribers
-                        true  // Purge the queue
+                        true,  // Purge the queue
+                        999_999_999  // Sleep over time
                 )
         );
     }
@@ -106,13 +116,13 @@ public class Main {
                 .peek(Thread::start)
                 .collect(Collectors.toList());
 
-        tasks.forEach(task -> {
-            try {
-                task.join();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        });
+//        tasks.forEach(task -> {
+//            try {
+//                task.join();
+//            } catch (InterruptedException e) {
+//                throw new RuntimeException(e);
+//            }
+//        });
     }
 
     private static @NotNull List<Subscriber> getSubscribers(@NotNull Map<String, List<String>> subToBrokerMap) {
@@ -132,5 +142,9 @@ public class Main {
         }
 
         return result;
+    }
+
+    public static void saveBrokersBackup(){
+        brokersBackup.addAll(brokersList);
     }
 }

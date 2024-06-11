@@ -1,4 +1,4 @@
-package ebs.communication.entities;
+package ebs.communication.watchers;
 
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
@@ -29,7 +29,7 @@ public class BrokerWatcher extends Thread{
         while (true) {
             boolean ready = true;
             try {
-                Thread.sleep(4000);
+                Thread.sleep(6000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

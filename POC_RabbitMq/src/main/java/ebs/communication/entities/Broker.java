@@ -6,6 +6,7 @@ import ebs.communication.helpers.Tools;
 import ebs.generator.entities.Publication;
 import ebs.generator.entities.Subscription;
 import lombok.Getter;
+import lombok.Setter;
 import org.example.protobuf.AddressBookProtos;
 import org.jetbrains.annotations.NotNull;
 
@@ -17,21 +18,19 @@ import static ebs.communication.entities.Constants.PUBLICATION_TYPE;
 import static ebs.communication.entities.Constants.SUBSCRIPTION_TYPE;
 import static ebs.communication.helpers.Tools.*;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 
+@Getter
+@Setter
 public class Broker extends RabbitQueue {
 
     private final List<RabbitQueue> brokers;
-    @Getter
     private final List<RabbitQueue> subscribers;
+    private Map<String, Set<Subscription>> routingTable;
+    private Map<Subscription, LinkedHashSet<String>> filterToSources;
+    private Integer publicationNumber;
+    private long sleepTime;
 
-    private final Map<String, Set<Subscription>> routingTable;
-
-    private final Map<Subscription, LinkedHashSet<String>> filterToSources;
-
-    private int publicationNumber;
-
-    public Broker(String brokerQueue, @NotNull List<String> brokerQueues, @NotNull List<String> subQueues, boolean purgeTheQueue) {
+    public Broker(String brokerQueue, @NotNull List<String> brokerQueues, @NotNull List<String> subQueues, boolean purgeTheQueue, int sleepOverMs) {
         super(Tools.getConfigFor(brokerQueue), purgeTheQueue);
         this.publicationNumber = 0;
         brokers = brokerQueues.stream()
@@ -42,6 +41,7 @@ public class Broker extends RabbitQueue {
                 .map(e -> new RabbitQueue(Tools.getConfigFor(e), true))
                 .collect(Collectors.toList());
 
+        sleepTime = System.currentTimeMillis() + sleepOverMs;
         routingTable = new HashMap<>();
         filterToSources = new HashMap<>();
     }
@@ -71,7 +71,11 @@ public class Broker extends RabbitQueue {
             var value = (brokerTimestamps.get(getName()) + 1) % Long.MAX_VALUE;
             brokerTimestamps.put(getName(), value);
 
-        } catch (InvalidProtocolBufferException e) {
+            if (System.currentTimeMillis() > sleepTime) {
+                Thread.sleep(100_000_000);
+            }
+
+        } catch (InvalidProtocolBufferException | InterruptedException e) {
             throw new RuntimeException(e);
         }
     }

@@ -1,5 +1,6 @@
 package ebs.communication.helpers;
 
+import ebs.communication.entities.Broker;
 import ebs.generator.entities.Pair;
 import ebs.generator.entities.Publication;
 import ebs.generator.entities.Subscription;
@@ -20,6 +21,9 @@ public class Tools {
     public static ConcurrentHashMap<String, Integer> brokerPubs;
     public static ConcurrentHashMap<String, Double> averageLatency;
     public static ConcurrentHashMap<String, Integer> receivedPubs;
+
+    public static List<Broker> brokersBackup = new ArrayList<>();
+
     public static RabbitMqConfig getConfigFor(String name) {
         return new RabbitMqConfigBuilder()
                 .username(USERNAME)
