@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ecc2970c-1b41-4a6d-b9ef-b43179e7da35" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ebs/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ebs/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ebs/communication/RabbitQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ebs/communication/RabbitQueue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ebs/communication/entities/AccuracyWatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ebs/communication/watchers/AccuracyWatcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ebs/communication/entities/Broker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ebs/communication/entities/Broker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ebs/communication/entities/BrokerWatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ebs/communication/watchers/BrokerWatcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ebs/communication/entities/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ebs/communication/entities/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ebs/communication/entities/Publisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ebs/communication/entities/Publisher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ebs/communication/entities/Rabbitstrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ebs/communication/watchers/Rabbitstrator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ebs/communication/entities/SubWatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ebs/communication/watchers/SubWatcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ebs/communication/helpers/Tools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ebs/communication/helpers/Tools.java" afterDir="false" />
-    </list>
+    <list default="true" id="ecc2970c-1b41-4a6d-b9ef-b43179e7da35" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
